@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Obra Inteligente - Orçamento Profissional</title>
+    <title>Obra Inteligente v8.0 - Orçamento Profissional</title>
     <style>
         * {
             margin: 0;
@@ -103,7 +103,7 @@
         label {
             display: block;
             margin-bottom: 8px;
-            color: #555;
+            color: #1a1a1a;
             font-weight: 600;
             font-size: 1.05em;
             text-align: left;
@@ -214,212 +214,254 @@
         }
         
         .result h3 {
-            color: #66bb6a;
-            margin: 20px 0 15px 0;
+            color: #333;
+            margin-top: 20px;
+            margin-bottom: 10px;
             font-size: 1.3em;
         }
         
-        .result-item {
+        .breakdown {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 15px 0;
+            border-left: 4px solid #66bb6a;
+        }
+        
+        .breakdown-item {
             display: flex;
             justify-content: space-between;
-            padding: 12px 15px;
-            background: white;
-            border-radius: 8px;
-            margin-bottom: 8px;
-            font-size: 0.95em;
+            padding: 10px 0;
+            border-bottom: 1px solid #f0f0f0;
         }
         
-        .result-item .label {
-            font-weight: 600;
-            color: #555;
-        }
-        
-        .result-item .value {
+        .breakdown-item:last-child {
+            border-bottom: none;
             font-weight: bold;
-            color: #66bb6a;
             font-size: 1.1em;
+            color: #66bb6a;
         }
         
-        .total {
-            background: linear-gradient(135deg, #81c784 0%, #66bb6a 100%);
-            color: white !important;
-            font-size: 1.3em !important;
-            margin-top: 15px;
-        }
-        
-        .total .label, .total .value {
-            color: white !important;
-        }
-        
-        .contingency {
+        .contingency-box {
             background: #fff9c4;
             padding: 20px;
             border-radius: 10px;
-            margin-top: 20px;
-            border-left: 4px solid #fbc02d;
+            border: 2px solid #ffeb3b;
+            margin: 20px 0;
         }
         
-        .contingency h3 {
-            color: #f57c00 !important;
+        .contingency-box h3 {
+            color: #f57c00;
+            display: flex;
+            align-items: center;
+            gap: 10px;
         }
         
-        .timeline {
+        .contingency-item {
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 10px 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .budget-card {
+            padding: 25px;
+            border-radius: 15px;
+            margin: 20px 0;
+            color: white;
+            text-align: center;
+        }
+        
+        .budget-realistic {
+            background: linear-gradient(135deg, #ffb74d 0%, #ffa726 100%);
+        }
+        
+        .budget-safe {
+            background: linear-gradient(135deg, #81c784 0%, #66bb6a 100%);
+        }
+        
+        .schedule {
             background: white;
             padding: 20px;
             border-radius: 10px;
-            margin-top: 20px;
+            margin: 20px 0;
+            border-left: 4px solid #64b5f6;
         }
         
-        .warning {
-            background: #ffebee;
-            border: 2px solid #ef5350;
+        .schedule-item {
             padding: 15px;
-            border-radius: 10px;
-            margin-top: 15px;
-            color: #c62828;
-            font-weight: bold;
+            background: #f5f5f5;
+            border-radius: 8px;
+            margin: 10px 0;
         }
         
-        .info-box {
-            background: #e3f2fd;
-            border-left: 4px solid #2196f3;
-            padding: 12px 15px;
-            margin-top: 10px;
-            border-radius: 5px;
-            font-size: 0.9em;
-            color: #1565c0;
-            text-align: left;
+        .screen {
+            display: none;
         }
         
-        .btn-action {
-            padding: 12px 24px;
-            border: none;
-            border-radius: 10px;
-            font-size: 1em;
-            font-weight: bold;
-            cursor: pointer;
-            margin: 10px 5px;
-            transition: all 0.3s;
-        }
-        
-        .btn-save {
-            background: #66bb6a;
-            color: white;
-        }
-        
-        .btn-print {
-            background: #42a5f5;
-            color: white;
-        }
-        
-        .btn-action:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        .screen.active {
+            display: block;
         }
         
         .hidden {
-            display: none;
+            display: none !important;
         }
         
         .checkbox-group {
             display: flex;
             align-items: center;
             gap: 10px;
-            margin-top: 10px;
+            padding: 10px;
+            background: #f9f9f9;
+            border-radius: 8px;
+            margin: 10px 0;
         }
         
-        .reverse-room {
-            background: white;
+        .checkbox-group input[type="checkbox"] {
+            width: auto;
+            margin: 0;
+        }
+        
+        .checkbox-group label {
+            margin: 0;
+            font-weight: normal;
+            color: #555;
+        }
+        
+        .info-box {
+            background: #e3f2fd;
+            border-left: 4px solid #2196f3;
             padding: 15px;
-            border-radius: 10px;
-            margin-bottom: 15px;
-            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            margin: 15px 0;
+            color: #1976d2;
         }
         
-        .reverse-card {
-            background: white;
-            padding: 20px;
-            border-radius: 15px;
-            border: 2px solid #e0e0e0;
-            margin-bottom: 20px;
+        .warning-box {
+            background: #ffebee;
+            border-left: 4px solid #f44336;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+            color: #c62828;
+            font-weight: 600;
         }
         
-        .reverse-card h3 {
-            color: #66bb6a;
-            margin-bottom: 10px;
-        }
-        
-        .reverse-card .included {
-            color: #4caf50;
-            font-size: 0.9em;
-            margin: 5px 0;
-        }
-        
-        .reverse-card .optional {
-            color: #ff9800;
-            font-size: 0.9em;
-            margin: 5px 0;
-        }
-        
-        .eco-section {
+        .eco-impact {
             background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%);
             padding: 20px;
-            border-radius: 15px;
-            margin: 20px 0;
-            border: 3px solid #4caf50;
-        }
-        
-        .eco-section h3 {
-            color: #2e7d32;
-            margin-bottom: 15px;
-        }
-        
-        .impact-summary {
-            background: #e8f5e9;
-            padding: 15px;
             border-radius: 10px;
-            margin-top: 20px;
-            border-left: 4px solid #4caf50;
+            margin: 20px 0;
+            border: 2px solid #4caf50;
+        }
+        
+        .eco-impact h3 {
+            color: #2e7d32;
+            display: flex;
+            align-items: center;
+            gap: 10px;
         }
         
         .tracking-item {
             background: white;
-            padding: 15px;
+            padding: 20px;
             border-radius: 10px;
-            margin-bottom: 10px;
-            border-left: 4px solid #e0e0e0;
+            margin: 15px 0;
+            border-left: 4px solid #ccc;
         }
         
         .tracking-item.completed {
-            border-left-color: #4caf50;
-            opacity: 0.7;
+            border-left-color: #66bb6a;
+            background: #f1f8e9;
+        }
+        
+        .tracking-item.delayed {
+            border-left-color: #ff9800;
+            background: #fff3e0;
+        }
+        
+        .tracking-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        
+        .tracking-progress {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin: 10px 0;
+        }
+        
+        .tracking-progress input[type="range"] {
+            flex: 1;
+            padding: 0;
+        }
+        
+        .tracking-progress span {
+            min-width: 50px;
+            font-weight: bold;
+            color: #66bb6a;
+        }
+        
+        .tracking-notes {
+            margin-top: 10px;
+        }
+        
+        .tracking-notes textarea {
+            width: 100%;
+            min-height: 60px;
+            padding: 10px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-family: inherit;
+            font-size: 0.95em;
+            resize: vertical;
+        }
+        
+        .tracking-notes textarea:focus {
+            outline: none;
+            border-color: #66bb6a;
+        }
+        
+        .delay-checkbox {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: 10px;
+            color: #f57c00;
+            font-weight: 600;
         }
         
         .progress-bar {
             width: 100%;
-            height: 30px;
+            height: 40px;
             background: #e0e0e0;
-            border-radius: 15px;
+            border-radius: 20px;
             overflow: hidden;
             margin: 20px 0;
         }
         
         .progress-fill {
             height: 100%;
-            background: linear-gradient(135deg, #81c784 0%, #66bb6a 100%);
-            transition: width 0.3s;
+            background: linear-gradient(90deg, #66bb6a 0%, #4caf50 100%);
             display: flex;
             align-items: center;
             justify-content: center;
             color: white;
             font-weight: bold;
+            transition: width 0.5s ease;
         }
         
         .saved-budget-card {
             background: white;
             padding: 15px;
             border-radius: 10px;
-            margin-bottom: 10px;
+            margin: 10px 0;
             border: 2px solid #e0e0e0;
             cursor: pointer;
             transition: all 0.3s;
@@ -427,6 +469,7 @@
         
         .saved-budget-card:hover {
             border-color: #66bb6a;
+            transform: translateY(-2px);
             box-shadow: 0 5px 15px rgba(0,0,0,0.1);
         }
         
@@ -435,1085 +478,1912 @@
             background: #f1f8e9;
         }
         
-        .strategy-card {
+        .reverse-card {
             background: white;
             padding: 20px;
-            border-radius: 15px;
+            border-radius: 10px;
+            margin: 15px 0;
             border: 2px solid #e0e0e0;
-            margin-bottom: 20px;
         }
         
-        .strategy-card h3 {
-            color: #4caf50;
+        .included {
+            color: #66bb6a;
+            font-weight: 600;
+            margin: 5px 0;
+        }
+        
+        .optional {
+            color: #ff9800;
+            margin: 5px 0;
+        }
+        
+        .sustainability-card {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 15px 0;
+            border: 2px solid #4caf50;
+        }
+        
+        .sustainability-card h4 {
+            color: #2e7d32;
             margin-bottom: 10px;
         }
         
-        .roi-box {
-            background: #e8f5e9;
+        .sustainability-option {
+            background: #f1f8e9;
             padding: 15px;
-            border-radius: 10px;
-            margin-top: 15px;
+            border-radius: 8px;
+            margin: 10px 0;
+            border-left: 4px solid #4caf50;
         }
         
-        @media print {
-            body { background: white; }
-            .btn-action, .btn-back, .btn-home { display: none; }
+        .cost-detail {
+            display: flex;
+            justify-content: space-between;
+            padding: 8px 0;
+            color: #555;
+        }
+        
+        .total-price {
+            font-size: 2em;
+            font-weight: bold;
+            color: #66bb6a;
+            text-align: center;
+            margin: 20px 0;
+            padding: 20px;
+            background: white;
+            border-radius: 10px;
+        }
+        
+        .worker-input {
+            background: #f9f9f9;
+            padding: 15px;
+            border-radius: 10px;
+            margin: 10px 0;
+            border: 1px solid #e0e0e0;
+        }
+        
+        .worker-input label {
+            font-size: 1.1em;
+            color: #1a1a1a;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+        
+        .worker-inputs-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-top: 10px;
+        }
+        
+        .worker-inputs-row div {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .worker-inputs-row label {
+            font-size: 0.9em;
+            font-weight: normal;
+            color: #555;
+            margin-bottom: 5px;
+        }
+        
+        .tracking-comment {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            margin-top: 10px;
+            font-size: 0.9em;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            resize: vertical;
+            min-height: 60px;
         }
     </style>
 </head>
 <body>
     <div class="container">
         <!-- HOME -->
-        <div id="home-screen">
+        <div id="home" class="screen active">
             <div class="header">
-                <h1>🏗️ Obra Inteligente</h1>
-                <p>Orçamento Profissional, Realista e Sustentável</p>
-            </div>
-            
-            <div class="form-group">
-                <label>📍 Selecione seu Estado:</label>
-                <select id="state">
-                    <option value="1.00">Espírito Santo (ES) - Base</option>
-                    <option value="1.15">São Paulo (SP) - +15%</option>
-                    <option value="1.12">Rio de Janeiro (RJ) - +12%</option>
-                    <option value="0.93">Minas Gerais (MG) - -7%</option>
-                    <option value="0.85">Bahia (BA) - -15%</option>
-                    <option value="0.97">Rio Grande do Sul (RS) - -3%</option>
-                    <option value="0.95">Paraná (PR) - -5%</option>
-                    <option value="0.98">Santa Catarina (SC) - -2%</option>
-                </select>
+                <h1>🏗️ Obra Inteligente v8.0</h1>
+                <p>Orçamento profissional, sustentável e inteligente!</p>
             </div>
             
             <div class="btn-home">
-                <button class="btn btn-primary" onclick="showScreen('normal')">
-                    📋 Fazer Orçamento
-                    <div style="font-size: 0.7em; margin-top: 10px;">Calcule sua obra completa</div>
+                <button class="btn btn-primary" onclick="showScreen('reforma')">
+                    💰 Fazer Orçamento
                 </button>
-                
                 <button class="btn btn-secondary" onclick="showScreen('reverse')">
-                    💰 Tenho R$ X
-                    <div style="font-size: 0.7em; margin-top: 10px;">Por onde começar?</div>
+                    🔄 Tenho R$ X
                 </button>
-                
                 <button class="btn btn-tertiary" onclick="showScreen('tracking')">
-                    📊 Acompanhar Obra
-                    <div style="font-size: 0.7em; margin-top: 10px;">Gerencie o andamento</div>
+                    📊 Gerenciar Obra
                 </button>
-                
                 <button class="btn btn-quaternary" onclick="showScreen('sustainability')">
                     🌱 Estratégias Sustentáveis
-                    <div style="font-size: 0.7em; margin-top: 10px;">Economize água e energia</div>
                 </button>
             </div>
-            
-            <div id="saved-budgets-list"></div>
         </div>
-        
-        <!-- MODO NORMAL -->
-        <div id="normal-screen" class="hidden">
+
+        <!-- FAZER ORÇAMENTO -->
+        <div id="reforma" class="screen">
             <button class="btn-back" onclick="showScreen('home')">← Voltar</button>
-            
-            <div class="header">
-                <h1>📋 Fazer Orçamento</h1>
-            </div>
+            <h2>💰 Novo Orçamento</h2>
             
             <div class="form-group">
-                <label>Tipo de Obra:</label>
-                <select id="project-type" onchange="updateNormalFields()">
-                    <option value="">Selecione...</option>
-                    <option value="cozinha">Cozinha</option>
-                    <option value="banheiro">Banheiro</option>
-                    <option value="quarto">Quarto</option>
-                    <option value="sala">Sala</option>
-                    <option value="casa">Casa Pequena (30-80m²)</option>
+                <label>Estado (Espírito Santo = Base)</label>
+                <select id="state" onchange="updateState()">
+                    <option value="1.0">Espírito Santo (ES) - Base</option>
+                    <option value="1.15">São Paulo (SP) - +15%</option>
+                    <option value="1.12">Rio de Janeiro (RJ) - +12%</option>
+                    <option value="0.92">Minas Gerais (MG) - -8%</option>
+                    <option value="0.88">Bahia (BA) - -12%</option>
+                    <option value="1.08">Paraná (PR) - +8%</option>
+                    <option value="1.10">Santa Catarina (SC) - +10%</option>
+                    <option value="1.07">Rio Grande do Sul (RS) - +7%</option>
                 </select>
             </div>
             
-            <div id="normal-fields"></div>
-            
-            <button class="btn btn-primary" style="width: 100%; margin-top: 20px;" onclick="calculateNormal()">
-                💰 Calcular Orçamento
-            </button>
-            
-            <div id="normal-result"></div>
-        </div>
-        
-        <!-- MODO REVERSO -->
-        <div id="reverse-screen" class="hidden">
-            <button class="btn-back" onclick="showScreen('home')">← Voltar</button>
-            
-            <div class="header">
-                <h1>💰 Tenho R$ X - Por onde começar?</h1>
-                <p>Informe seus cômodos e orçamento para receber a melhor estratégia</p>
+            <div class="form-group">
+                <label>Tipo de Reforma</label>
+                <select id="reform-type" onchange="showReformForm()">
+                    <option value="">Selecione...</option>
+                    <option value="cozinha">🍳 Cozinha</option>
+                    <option value="banheiro">🚿 Banheiro</option>
+                    <option value="quarto">🛏️ Quarto</option>
+                    <option value="sala">🛋️ Sala</option>
+                    <option value="casa">🏠 Casa Pequena</option>
+                </select>
             </div>
+
+            <!-- FORMULÁRIO COZINHA -->
+            <div id="form-cozinha" class="hidden">
+                <h3>🍳 Cozinha</h3>
+                
+                <div class="form-group">
+                    <label>Área da Cozinha (m²)</label>
+                    <input type="number" id="coz-area" placeholder="Ex: 12" step="0.1">
+                </div>
+
+                <div class="form-group">
+                    <label>Piso</label>
+                    <select id="coz-piso">
+                        <option value="95">Porcelanato Portobello - R$ 95/m²</option>
+                        <option value="105">Porcelanato Eliane Eco 🌱 - R$ 105/m²</option>
+                        <option value="85">Cerâmica Cecrisa - R$ 85/m²</option>
+                        <option value="75">Cerâmica Eliane - R$ 75/m²</option>
+                        <option value="custom">💰 Outro (digitar valor)</option>
+                    </select>
+                    <input type="number" id="coz-piso-custom" class="hidden" placeholder="Valor por m²" step="0.01">
+                </div>
+
+                <div class="form-group">
+                    <label>Revestimento de Parede</label>
+                    <div id="coz-walls"></div>
+                    <button class="btn-add-wall" onclick="addWall('coz')">+ Adicionar Parede</button>
+                    <div class="info-box">💡 Dica: Altura padrão cozinha = 1,5m</div>
+                </div>
+
+                <div class="checkbox-group">
+                    <input type="checkbox" id="coz-pintura">
+                    <label for="coz-pintura">🎨 Adicionar Pintura (paredes não revestidas)</label>
+                </div>
+
+                <div id="coz-pintura-options" class="hidden">
+                    <div class="form-group">
+                        <label>Área para Pintura (m² de parede)</label>
+                        <input type="number" id="coz-pintura-area" placeholder="Ex: 20" step="0.1">
+                    </div>
+                    <div class="form-group">
+                        <label>Tipo de Tinta</label>
+                        <select id="coz-pintura-tipo">
+                            <option value="25">Suvinil Látex - R$ 25/m²</option>
+                            <option value="30">Coral Acrílica - R$ 30/m²</option>
+                            <option value="35">Sherwin Williams Eco 🌱 - R$ 35/m²</option>
+                            <option value="custom">💰 Outro (digitar valor)</option>
+                        </select>
+                        <input type="number" id="coz-pintura-custom" class="hidden" placeholder="Valor por m²" step="0.01">
+                    </div>
+                    <div class="checkbox-group">
+                        <input type="checkbox" id="coz-pintura-preparo">
+                        <label for="coz-pintura-preparo">Precisa lixar e aplicar massa corrida</label>
+                    </div>
+                </div>
+
+                <div class="checkbox-group">
+                    <input type="checkbox" id="coz-bancada">
+                    <label for="coz-bancada">Incluir Bancada</label>
+                </div>
+
+                <div id="coz-bancada-options" class="hidden">
+                    <div class="form-group">
+                        <label>Comprimento da Bancada (metros lineares)</label>
+                        <input type="number" id="coz-bancada-comp" placeholder="Ex: 2.5" step="0.1">
+                        <div class="info-box">💡 Largura padrão: 60cm</div>
+                    </div>
+                    <div class="form-group">
+                        <label>Tipo de Bancada</label>
+                        <select id="coz-bancada-tipo">
+                            <option value="350">Granito - R$ 350/m linear</option>
+                            <option value="450">Mármore - R$ 450/m linear</option>
+                            <option value="550">Quartzo - R$ 550/m linear</option>
+                            <option value="600">Silestone Eco 🌱 - R$ 600/m linear</option>
+                            <option value="custom">💰 Outro (digitar valor)</option>
+                        </select>
+                        <input type="number" id="coz-bancada-custom" class="hidden" placeholder="Valor por m linear" step="0.01">
+                    </div>
+                </div>
+
+                <div class="checkbox-group">
+                    <input type="checkbox" id="coz-pia">
+                    <label for="coz-pia">Trocar Pia</label>
+                </div>
+
+                <div id="coz-pia-options" class="hidden">
+                    <div class="form-group">
+                        <label>Tipo de Pia</label>
+                        <select id="coz-pia-tipo">
+                            <option value="400">Pia Inox Simples - R$ 400</option>
+                            <option value="600">Pia Inox Dupla - R$ 600</option>
+                            <option value="800">Pia Granito - R$ 800</option>
+                            <option value="custom">💰 Outro (digitar valor)</option>
+                        </select>
+                        <input type="number" id="coz-pia-custom" class="hidden" placeholder="Valor total" step="0.01">
+                    </div>
+                </div>
+
+                <div class="checkbox-group">
+                    <input type="checkbox" id="coz-eletrica">
+                    <label for="coz-eletrica">⚡ Refazer Elétrica</label>
+                </div>
+
+                <div class="checkbox-group">
+                    <input type="checkbox" id="coz-hidraulica">
+                    <label for="coz-hidraulica">💧 Refazer Hidráulica</label>
+                </div>
+
+                <div class="checkbox-group">
+                    <input type="checkbox" id="coz-reuso">
+                    <label for="coz-reuso">♻️ Sistema de Reaproveitamento de Água</label>
+                </div>
+
+                <div id="coz-reuso-options" class="hidden">
+                    <div class="info-box">
+                        <strong>💧 Sistema de Reúso de Água</strong><br>
+                        Aproveita água da pia para regar plantas ou limpeza<br>
+                        Inclui: tubulação, reservatório 100L, filtro básico
+                    </div>
+                    <div class="form-group">
+                        <label>Tipo de Sistema</label>
+                        <select id="coz-reuso-tipo">
+                            <option value="800">Sistema Básico - R$ 800</option>
+                            <option value="1500">Sistema Intermediário - R$ 1.500</option>
+                            <option value="2500">Sistema Completo - R$ 2.500</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="checkbox-group">
+                    <input type="checkbox" id="coz-demolir">
+                    <label for="coz-demolir">🔨 Demolir Parede</label>
+                </div>
+
+                <div id="coz-demolir-options" class="hidden">
+                    <div class="form-group">
+                        <label>Metragem da Parede (m²)</label>
+                        <input type="number" id="coz-demolir-area" placeholder="Ex: 8" step="0.1">
+                    </div>
+                    <div class="warning-box">
+                        ⚠️ ATENÇÃO: Antes de demolir qualquer parede, CONSULTE UM ENGENHEIRO para verificar se não é uma parede estrutural!
+                    </div>
+                </div>
+
+                <button class="btn btn-primary" onclick="calculateBudget('cozinha')" style="width: 100%; margin-top: 20px;">
+                    Calcular Orçamento
+                </button>
+            </div>
+
+            <!-- FORMULÁRIO BANHEIRO -->
+            <div id="form-banheiro" class="hidden">
+                <h3>🚿 Banheiro</h3>
+                
+                <div class="form-group">
+                    <label>Área do Banheiro (m²)</label>
+                    <input type="number" id="ban-area" placeholder="Ex: 6" step="0.1">
+                </div>
+
+                <div class="form-group">
+                    <label>Piso</label>
+                    <select id="ban-piso">
+                        <option value="95">Porcelanato Portobello - R$ 95/m²</option>
+                        <option value="105">Porcelanato Eliane Eco 🌱 - R$ 105/m²</option>
+                        <option value="85">Cerâmica Cecrisa - R$ 85/m²</option>
+                        <option value="75">Cerâmica Eliane - R$ 75/m²</option>
+                        <option value="custom">💰 Outro (digitar valor)</option>
+                    </select>
+                    <input type="number" id="ban-piso-custom" class="hidden" placeholder="Valor por m²" step="0.01">
+                </div>
+
+                <div class="form-group">
+                    <label>Revestimento de Parede</label>
+                    <div id="ban-walls"></div>
+                    <button class="btn-add-wall" onclick="addWall('ban')">+ Adicionar Parede</button>
+                    <div class="info-box">💡 Dica: Altura comum banheiro = 2,0m (até o teto) ou 1,2m (meia parede)</div>
+                </div>
+
+                <div class="checkbox-group">
+                    <input type="checkbox" id="ban-pintura">
+                    <label for="ban-pintura">🎨 Adicionar Pintura (paredes não revestidas)</label>
+                </div>
+
+                <div id="ban-pintura-options" class="hidden">
+                    <div class="form-group">
+                        <label>Área para Pintura (m² de parede)</label>
+                        <input type="number" id="ban-pintura-area" placeholder="Ex: 15" step="0.1">
+                    </div>
+                    <div class="form-group">
+                        <label>Tipo de Tinta</label>
+                        <select id="ban-pintura-tipo">
+                            <option value="30">Tinta Anti-Mofo Suvinil - R$ 30/m²</option>
+                            <option value="35">Tinta Anti-Mofo Coral - R$ 35/m²</option>
+                            <option value="40">Tinta Anti-Mofo Eco 🌱 - R$ 40/m²</option>
+                            <option value="custom">💰 Outro (digitar valor)</option>
+                        </select>
+                        <input type="number" id="ban-pintura-custom" class="hidden" placeholder="Valor por m²" step="0.01">
+                    </div>
+                    <div class="checkbox-group">
+                        <input type="checkbox" id="ban-pintura-preparo">
+                        <label for="ban-pintura-preparo">Precisa lixar e aplicar massa corrida</label>
+                    </div>
+                </div>
+
+                <div class="checkbox-group">
+                    <input type="checkbox" id="ban-loucas">
+                    <label for="ban-loucas">Trocar Louças</label>
+                </div>
+
+                <div id="ban-loucas-options" class="hidden">
+                    <div class="form-group">
+                        <label>Kit de Louças</label>
+                        <select id="ban-loucas-tipo">
+                            <option value="800">Kit Básico Deca (vaso + pia + torneiras) - R$ 800</option>
+                            <option value="1200">Kit Intermediário Deca (vaso + pia + chuveiro + torneiras) - R$ 1.200</option>
+                            <option value="1800">Kit Premium Deca (vaso + pia + chuveiro + torneiras + metais) - R$ 1.800</option>
+                            <option value="2200">Kit Eco Deca 🌱 (economia de água 40%) - R$ 2.200</option>
+                            <option value="custom">💰 Outro (digitar valor)</option>
+                        </select>
+                        <input type="number" id="ban-loucas-custom" class="hidden" placeholder="Valor total" step="0.01">
+                    </div>
+                    <div class="info-box">
+                        <strong>Kit Inclui:</strong><br>
+                        • Vaso sanitário com caixa acoplada<br>
+                        • Pia/Cuba<br>
+                        • Torneiras<br>
+                        • Chuveiro (kits intermediário e premium)
+                    </div>
+                    <div class="checkbox-group">
+                        <input type="checkbox" id="ban-banheira">
+                        <label for="ban-banheira">🛁 Adicionar Banheira</label>
+                    </div>
+                    <div id="ban-banheira-options" class="hidden">
+                        <select id="ban-banheira-tipo">
+                            <option value="1500">Banheira Simples - R$ 1.500</option>
+                            <option value="3000">Banheira Hidromassagem - R$ 3.000</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="checkbox-group">
+                    <input type="checkbox" id="ban-boxe">
+                    <label for="ban-boxe">Incluir Box</label>
+                </div>
+
+                <div id="ban-boxe-options" class="hidden">
+                    <div class="form-group">
+                        <label>Tipo de Box</label>
+                        <select id="ban-boxe-tipo">
+                            <option value="600">Box Acrílico - R$ 600</option>
+                            <option value="900">Box Vidro Temperado - R$ 900</option>
+                            <option value="1200">Box Vidro Premium - R$ 1.200</option>
+                            <option value="custom">💰 Outro (digitar valor)</option>
+                        </select>
+                        <input type="number" id="ban-boxe-custom" class="hidden" placeholder="Valor total" step="0.01">
+                    </div>
+                </div>
+
+                <div class="checkbox-group">
+                    <input type="checkbox" id="ban-eletrica">
+                    <label for="ban-eletrica">⚡ Refazer Elétrica</label>
+                </div>
+
+                <div class="checkbox-group">
+                    <input type="checkbox" id="ban-hidraulica">
+                    <label for="ban-hidraulica">💧 Refazer Hidráulica</label>
+                </div>
+
+                <div class="checkbox-group">
+                    <input type="checkbox" id="ban-reuso">
+                    <label for="ban-reuso">♻️ Sistema de Reaproveitamento de Água do Chuveiro</label>
+                </div>
+
+                <div id="ban-reuso-options" class="hidden">
+                    <div class="info-box">
+                        <strong>💧 Sistema de Reúso de Água do Chuveiro</strong><br>
+                        Aproveita água do banho para vaso sanitário e limpeza<br>
+                        Economia de até 40% no consumo de água!
+                    </div>
+                    <div class="form-group">
+                        <label>Tipo de Sistema</label>
+                        <select id="ban-reuso-tipo">
+                            <option value="1200">Sistema Básico - R$ 1.200</option>
+                            <option value="2000">Sistema Intermediário - R$ 2.000</option>
+                            <option value="3500">Sistema Completo - R$ 3.500</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="checkbox-group">
+                    <input type="checkbox" id="ban-demolir">
+                    <label for="ban-demolir">🔨 Demolir Parede</label>
+                </div>
+
+                <div id="ban-demolir-options" class="hidden">
+                    <div class="form-group">
+                        <label>Metragem da Parede (m²)</label>
+                        <input type="number" id="ban-demolir-area" placeholder="Ex: 5" step="0.1">
+                    </div>
+                    <div class="warning-box">
+                        ⚠️ ATENÇÃO: Antes de demolir qualquer parede, CONSULTE UM ENGENHEIRO para verificar se não é uma parede estrutural!
+                    </div>
+                </div>
+
+                <button class="btn btn-primary" onclick="calculateBudget('banheiro')" style="width: 100%; margin-top: 20px;">
+                    Calcular Orçamento
+                </button>
+            </div>
+
+            <!-- FORMULÁRIO CASA PEQUENA -->
+            <div id="form-casa" class="hidden">
+                <h3>🏠 Casa Pequena</h3>
+                
+                <div class="form-group">
+                    <label>Área Total da Casa (m²)</label>
+                    <input type="number" id="casa-area" placeholder="Ex: 60" step="0.1">
+                </div>
+
+                <div class="info-box">
+                    💡 Detalhamento opcional dos cômodos (a soma deve ser próxima da área total)
+                </div>
+
+                <div class="grid-2">
+                    <div>
+                        <label>Quartos (m²)</label>
+                        <input type="number" id="casa-quartos" placeholder="Ex: 20" step="0.1">
+                    </div>
+                    <div>
+                        <label>Sala (m²)</label>
+                        <input type="number" id="casa-sala" placeholder="Ex: 15" step="0.1">
+                    </div>
+                    <div>
+                        <label>Cozinha (m²)</label>
+                        <input type="number" id="casa-cozinha" placeholder="Ex: 10" step="0.1">
+                    </div>
+                    <div>
+                        <label>Banheiro (m²)</label>
+                        <input type="number" id="casa-banheiro" placeholder="Ex: 6" step="0.1">
+                    </div>
+                </div>
+
+                <h4 style="margin-top: 30px;">Estrutura</h4>
+
+                <div class="form-group">
+                    <label>Fundação</label>
+                    <select id="casa-fundacao">
+                        <option value="180">Sapata Corrida - R$ 180/m²</option>
+                        <option value="220">Radier - R$ 220/m²</option>
+                        <option value="250">Estacas - R$ 250/m²</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>Alvenaria</label>
+                    <select id="casa-alvenaria">
+                        <option value="320">Tijolo Cerâmico - R$ 320/m²</option>
+                        <option value="380">Bloco de Concreto - R$ 380/m²</option>
+                        <option value="420">Tijolo Ecológico 🌱 - R$ 420/m²</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>Cobertura/Telhado</label>
+                    <select id="casa-telhado">
+                        <option value="180">Telha Cerâmica - R$ 180/m²</option>
+                        <option value="150">Telha Fibrocimento - R$ 150/m²</option>
+                        <option value="220">Telha Metálica - R$ 220/m²</option>
+                        <option value="280">Telha Ecológica 🌱 - R$ 280/m²</option>
+                        <option value="350">Laje + Telha - R$ 350/m²</option>
+                    </select>
+                </div>
+
+                <h4 style="margin-top: 30px;">Esquadrias</h4>
+
+                <div class="form-group">
+                    <label>Quantidade de Portas</label>
+                    <input type="number" id="casa-portas-qtd" placeholder="Ex: 6" min="1">
+                </div>
+
+                <div class="form-group">
+                    <label>Tipo de Portas</label>
+                    <select id="casa-portas">
+                        <option value="180">Madeira Compensada - R$ 180/un</option>
+                        <option value="280">Madeira Maciça - R$ 280/un</option>
+                        <option value="350">MDF - R$ 350/un</option>
+                        <option value="450">MDF Premium - R$ 450/un</option>
+                    </select>
+                    <div class="info-box">⚠️ MDF geralmente é mais caro que madeira comum</div>
+                </div>
+
+                <div class="form-group">
+                    <label>Quantidade de Janelas</label>
+                    <input type="number" id="casa-janelas-qtd" placeholder="Ex: 8" min="1">
+                </div>
+
+                <div class="form-group">
+                    <label>Tipo de Janelas</label>
+                    <select id="casa-janelas">
+                        <option value="250">Alumínio Básico - R$ 250/un</option>
+                        <option value="350">Alumínio com Vidro - R$ 350/un</option>
+                        <option value="450">Alumínio Premium - R$ 450/un</option>
+                        <option value="600">PVC com Vidro Duplo 🌱 - R$ 600/un</option>
+                    </select>
+                </div>
+
+                <h4 style="margin-top: 30px;">Acabamentos</h4>
+
+                <div class="form-group">
+                    <label>Piso Geral</label>
+                    <select id="casa-piso">
+                        <option value="85">Cerâmica Básica - R$ 85/m²</option>
+                        <option value="95">Porcelanato - R$ 95/m²</option>
+                        <option value="105">Porcelanato Eco 🌱 - R$ 105/m²</option>
+                        <option value="120">Piso Bambu 🌱 - R$ 120/m²</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>Pintura</label>
+                    <select id="casa-pintura">
+                        <option value="25">Tinta Látex - R$ 25/m²</option>
+                        <option value="30">Tinta Acrílica - R$ 30/m²</option>
+                        <option value="35">Tinta Eco 🌱 - R$ 35/m²</option>
+                    </select>
+                </div>
+
+                <div class="checkbox-group">
+                    <input type="checkbox" id="casa-pintura-preparo">
+                    <label for="casa-pintura-preparo">Precisa lixar e aplicar massa corrida</label>
+                </div>
+
+                <h4 style="margin-top: 30px;">Instalações</h4>
+
+                <div class="checkbox-group">
+                    <input type="checkbox" id="casa-eletrica" checked>
+                    <label for="casa-eletrica">⚡ Instalação Elétrica Completa</label>
+                </div>
+
+                <div class="checkbox-group">
+                    <input type="checkbox" id="casa-hidraulica" checked>
+                    <label for="casa-hidraulica">💧 Instalação Hidráulica Completa</label>
+                </div>
+
+                <div class="checkbox-group">
+                    <input type="checkbox" id="casa-reuso">
+                    <label for="casa-reuso">♻️ Sistema de Reaproveitamento de Água</label>
+                </div>
+
+                <div id="casa-reuso-options" class="hidden">
+                    <div class="form-group">
+                        <label>Tipo de Sistema</label>
+                        <select id="casa-reuso-tipo">
+                            <option value="2500">Sistema Básico (água cinza) - R$ 2.500</option>
+                            <option value="5000">Sistema Intermediário (cisterna 500L) - R$ 5.000</option>
+                            <option value="8000">Sistema Completo (cisterna 1000L + filtragem) - R$ 8.000</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="checkbox-group">
+                    <input type="checkbox" id="casa-solar">
+                    <label for="casa-solar">☀️ Preparar para Energia Solar (estrutura no telhado)</label>
+                </div>
+
+                <div id="casa-solar-options" class="hidden">
+                    <div class="info-box">
+                        Adiciona reforço estrutural no telhado e passa conduítes preparados.<br>
+                        Custo: R$ 2.000 (economiza R$ 3.000 se instalar painéis depois)
+                    </div>
+                </div>
+
+                <button class="btn btn-primary" onclick="calculateBudget('casa')" style="width: 100%; margin-top: 20px;">
+                    Calcular Orçamento
+                </button>
+            </div>
+
+            <!-- FORMULÁRIO QUARTO -->
+            <div id="form-quarto" class="hidden">
+                <h3>🛏️ Quarto</h3>
+                
+                <div class="form-group">
+                    <label>Área do Quarto (m²)</label>
+                    <input type="number" id="qua-area" placeholder="Ex: 12" step="0.1">
+                </div>
+
+                <div class="form-group">
+                    <label>Piso</label>
+                    <select id="qua-piso">
+                        <option value="95">Porcelanato Portobello - R$ 95/m²</option>
+                        <option value="105">Porcelanato Eliane Eco 🌱 - R$ 105/m²</option>
+                        <option value="90">Laminado Durafloor - R$ 90/m²</option>
+                        <option value="95">Laminado Eucafloor - R$ 95/m²</option>
+                        <option value="120">Piso Bambu Bambutec 🌱 - R$ 120/m²</option>
+                        <option value="custom">💰 Outro (digitar valor)</option>
+                    </select>
+                    <input type="number" id="qua-piso-custom" class="hidden" placeholder="Valor por m²" step="0.01">
+                </div>
+
+                <h4 style="margin-top: 20px;">Pintura</h4>
+
+                <div class="checkbox-group">
+                    <input type="checkbox" id="qua-pintar-paredes">
+                    <label for="qua-pintar-paredes">Pintar Paredes</label>
+                </div>
+
+                <div class="checkbox-group">
+                    <input type="checkbox" id="qua-pintar-teto">
+                    <label for="qua-pintar-teto">Pintar Teto</label>
+                </div>
+
+                <div id="qua-pintura-calc" class="hidden">
+                    <div class="info-box">
+                        💡 Área calculada automaticamente: <strong id="qua-pintura-auto">0</strong> m²<br>
+                        <small>Fórmula: Área do quarto × 3,8 (considera paredes + teto)</small>
+                    </div>
+                    <div class="form-group">
+                        <label>Confirme ou ajuste a área para pintura (m²)</label>
+                        <input type="number" id="qua-pintura-area" placeholder="Área calculada" step="0.1">
+                    </div>
+                </div>
+
+                <div id="qua-pintura-options" class="hidden">
+                    <div class="form-group">
+                        <label>Tipo de Tinta</label>
+                        <select id="qua-pintura-tipo">
+                            <option value="25">Suvinil Látex - R$ 25/m²</option>
+                            <option value="30">Coral Acrílica - R$ 30/m²</option>
+                            <option value="35">Sherwin Williams Eco 🌱 - R$ 35/m²</option>
+                            <option value="custom">💰 Outro (digitar valor)</option>
+                        </select>
+                        <input type="number" id="qua-pintura-custom" class="hidden" placeholder="Valor por m²" step="0.01">
+                    </div>
+
+                    <div class="checkbox-group">
+                        <input type="checkbox" id="qua-pintura-preparo">
+                        <label for="qua-pintura-preparo">Precisa lixar e aplicar massa corrida</label>
+                    </div>
+                </div>
+
+                <div class="checkbox-group">
+                    <input type="checkbox" id="qua-eletrica">
+                    <label for="qua-eletrica">⚡ Refazer Elétrica</label>
+                </div>
+
+                <div class="checkbox-group">
+                    <input type="checkbox" id="qua-demolir">
+                    <label for="qua-demolir">🔨 Demolir Parede</label>
+                </div>
+
+                <div id="qua-demolir-options" class="hidden">
+                    <div class="form-group">
+                        <label>Metragem da Parede (m²)</label>
+                        <input type="number" id="qua-demolir-area" placeholder="Ex: 10" step="0.1">
+                    </div>
+                    <div class="warning-box">
+                        ⚠️ ATENÇÃO: Antes de demolir qualquer parede, CONSULTE UM ENGENHEIRO para verificar se não é uma parede estrutural!
+                    </div>
+                </div>
+
+                <button class="btn btn-primary" onclick="calculateBudget('quarto')" style="width: 100%; margin-top: 20px;">
+                    Calcular Orçamento
+                </button>
+            </div>
+
+            <!-- FORMULÁRIO SALA -->
+            <div id="form-sala" class="hidden">
+                <h3>🛋️ Sala</h3>
+                
+                <div class="form-group">
+                    <label>Área da Sala (m²)</label>
+                    <input type="number" id="sal-area" placeholder="Ex: 20" step="0.1">
+                </div>
+
+                <div class="form-group">
+                    <label>Piso</label>
+                    <select id="sal-piso">
+                        <option value="95">Porcelanato Portobello - R$ 95/m²</option>
+                        <option value="105">Porcelanato Eliane Eco 🌱 - R$ 105/m²</option>
+                        <option value="90">Laminado Durafloor - R$ 90/m²</option>
+                        <option value="95">Laminado Eucafloor - R$ 95/m²</option>
+                        <option value="120">Piso Bambu Bambutec 🌱 - R$ 120/m²</option>
+                        <option value="custom">💰 Outro (digitar valor)</option>
+                    </select>
+                    <input type="number" id="sal-piso-custom" class="hidden" placeholder="Valor por m²" step="0.01">
+                </div>
+
+                <h4 style="margin-top: 20px;">Pintura</h4>
+
+                <div class="checkbox-group">
+                    <input type="checkbox" id="sal-pintar-paredes">
+                    <label for="sal-pintar-paredes">Pintar Paredes</label>
+                </div>
+
+                <div class="checkbox-group">
+                    <input type="checkbox" id="sal-pintar-teto">
+                    <label for="sal-pintar-teto">Pintar Teto</label>
+                </div>
+
+                <div id="sal-pintura-calc" class="hidden">
+                    <div class="info-box">
+                        💡 Área calculada automaticamente: <strong id="sal-pintura-auto">0</strong> m²<br>
+                        <small>Fórmula: Área da sala × 3,8 (considera paredes + teto)</small>
+                    </div>
+                    <div class="form-group">
+                        <label>Confirme ou ajuste a área para pintura (m²)</label>
+                        <input type="number" id="sal-pintura-area" placeholder="Área calculada" step="0.1">
+                    </div>
+                </div>
+
+                <div id="sal-pintura-options" class="hidden">
+                    <div class="form-group">
+                        <label>Tipo de Tinta</label>
+                        <select id="sal-pintura-tipo">
+                            <option value="25">Suvinil Látex - R$ 25/m²</option>
+                            <option value="30">Coral Acrílica - R$ 30/m²</option>
+                            <option value="35">Sherwin Williams Eco 🌱 - R$ 35/m²</option>
+                            <option value="custom">💰 Outro (digitar valor)</option>
+                        </select>
+                        <input type="number" id="sal-pintura-custom" class="hidden" placeholder="Valor por m²" step="0.01">
+                    </div>
+
+                    <div class="checkbox-group">
+                        <input type="checkbox" id="sal-pintura-preparo">
+                        <label for="sal-pintura-preparo">Precisa lixar e aplicar massa corrida</label>
+                    </div>
+                </div>
+
+                <div class="checkbox-group">
+                    <input type="checkbox" id="sal-eletrica">
+                    <label for="sal-eletrica">⚡ Refazer Elétrica</label>
+                </div>
+
+                <div class="checkbox-group">
+                    <input type="checkbox" id="sal-demolir">
+                    <label for="sal-demolir">🔨 Demolir Parede</label>
+                </div>
+
+                <div id="sal-demolir-options" class="hidden">
+                    <div class="form-group">
+                        <label>Metragem da Parede (m²)</label>
+                        <input type="number" id="sal-demolir-area" placeholder="Ex: 12" step="0.1">
+                    </div>
+                    <div class="warning-box">
+                        ⚠️ ATENÇÃO: Antes de demolir qualquer parede, CONSULTE UM ENGENHEIRO para verificar se não é uma parede estrutural!
+                    </div>
+                </div>
+
+                <button class="btn btn-primary" onclick="calculateBudget('sala')" style="width: 100%; margin-top: 20px;">
+                    Calcular Orçamento
+                </button>
+            </div>
+
+            <!-- RESULTADO -->
+            <div id="result-container"></div>
+            <div id="saved-budgets-list"></div>
+        </div>
+
+        <!-- TENHO R$ X -->
+        <div id="reverse" class="screen">
+            <button class="btn-back" onclick="showScreen('home')">← Voltar</button>
+            <h2>🔄 Tenho R$ X - O Que Posso Fazer?</h2>
             
-            <div style="background: #fff9c4; padding: 20px; border-radius: 10px; margin-bottom: 20px;">
-                <h3 style="margin-bottom: 15px; text-align: left;">📝 Marque os cômodos que deseja reformar:</h3>
-                
-                <div class="reverse-room">
-                    <div class="checkbox-group">
-                        <input type="checkbox" id="rev-cozinha" onchange="toggleReverseRoom('cozinha')">
-                        <label for="rev-cozinha" style="margin: 0;">🍳 Cozinha</label>
-                    </div>
-                    <div id="rev-cozinha-inputs" class="hidden" style="margin-top: 10px;">
-                        <input type="number" placeholder="Área em m²" id="rev-cozinha-area" min="1">
-                    </div>
-                </div>
-                
-                <div class="reverse-room">
-                    <div class="checkbox-group">
-                        <input type="checkbox" id="rev-banheiro" onchange="toggleReverseRoom('banheiro')">
-                        <label for="rev-banheiro" style="margin: 0;">🚿 Banheiro</label>
-                    </div>
-                    <div id="rev-banheiro-inputs" class="hidden" style="margin-top: 10px;">
-                        <input type="number" placeholder="Área em m²" id="rev-banheiro-area" min="1">
-                    </div>
-                </div>
-                
-                <div class="reverse-room">
-                    <div class="checkbox-group">
-                        <input type="checkbox" id="rev-quarto" onchange="toggleReverseRoom('quarto')">
-                        <label for="rev-quarto" style="margin: 0;">🛏️ Quarto</label>
-                    </div>
-                    <div id="rev-quarto-inputs" class="hidden" style="margin-top: 10px;">
-                        <input type="number" placeholder="Área em m²" id="rev-quarto-area" min="1">
-                    </div>
-                </div>
-                
-                <div class="reverse-room">
-                    <div class="checkbox-group">
-                        <input type="checkbox" id="rev-sala" onchange="toggleReverseRoom('sala')">
-                        <label for="rev-sala" style="margin: 0;">🛋️ Sala</label>
-                    </div>
-                    <div id="rev-sala-inputs" class="hidden" style="margin-top: 10px;">
-                        <input type="number" placeholder="Área em m²" id="rev-sala-area" min="1">
-                    </div>
-                </div>
+            <div class="form-group">
+                <label>Estado</label>
+                <select id="rev-state" onchange="updateState()">
+                    <option value="1.0">Espírito Santo (ES) - Base</option>
+                    <option value="1.15">São Paulo (SP) - +15%</option>
+                    <option value="1.12">Rio de Janeiro (RJ) - +12%</option>
+                    <option value="0.92">Minas Gerais (MG) - -8%</option>
+                    <option value="0.88">Bahia (BA) - -12%</option>
+                    <option value="1.08">Paraná (PR) - +8%</option>
+                    <option value="1.10">Santa Catarina (SC) - +10%</option>
+                    <option value="1.07">Rio Grande do Sul (RS) - +7%</option>
+                </select>
             </div>
             
             <div class="form-group">
-                <label>💵 Quanto você tem para investir?</label>
-                <input type="number" id="budget-amount" placeholder="Ex: 15000" min="1000">
+                <label>Quanto você tem para investir?</label>
+                <input type="number" id="budget-amount" placeholder="Ex: 15000" step="100">
             </div>
             
-            <button class="btn btn-secondary" style="width: 100%; margin-top: 20px;" onclick="calculateReverse()">
-                🎯 Ver Melhor Estratégia
+            <h3>Marque os cômodos de interesse:</h3>
+            
+            <div class="checkbox-group">
+                <input type="checkbox" id="rev-cozinha">
+                <label for="rev-cozinha">🍳 Cozinha</label>
+            </div>
+            <div id="rev-cozinha-area-div" class="hidden">
+                <input type="number" id="rev-cozinha-area" placeholder="Área da cozinha (m²)" step="0.1">
+            </div>
+            
+            <div class="checkbox-group">
+                <input type="checkbox" id="rev-banheiro">
+                <label for="rev-banheiro">🚿 Banheiro</label>
+            </div>
+            <div id="rev-banheiro-area-div" class="hidden">
+                <input type="number" id="rev-banheiro-area" placeholder="Área do banheiro (m²)" step="0.1">
+            </div>
+            
+            <div class="checkbox-group">
+                <input type="checkbox" id="rev-quarto">
+                <label for="rev-quarto">🛏️ Quarto</label>
+            </div>
+            <div id="rev-quarto-area-div" class="hidden">
+                <input type="number" id="rev-quarto-area" placeholder="Área do quarto (m²)" step="0.1">
+            </div>
+            
+            <div class="checkbox-group">
+                <input type="checkbox" id="rev-sala">
+                <label for="rev-sala">🛋️ Sala</label>
+            </div>
+            <div id="rev-sala-area-div" class="hidden">
+                <input type="number" id="rev-sala-area" placeholder="Área da sala (m²)" step="0.1">
+            </div>
+            
+            <button class="btn btn-primary" onclick="calculateReverse()" style="width: 100%; margin-top: 20px;">
+                Ver Melhor Estratégia
             </button>
             
             <div id="reverse-result"></div>
         </div>
-        
-        <!-- ACOMPANHAMENTO -->
-        <div id="tracking-screen" class="hidden">
+
+        <!-- GERENCIAR OBRA -->
+        <div id="tracking" class="screen">
             <button class="btn-back" onclick="showScreen('home')">← Voltar</button>
+            <h2>📊 Gerenciar Obra</h2>
             
-            <div class="header">
-                <h1>📊 Acompanhamento da Obra</h1>
-                <p>Gerencie o progresso da sua obra</p>
+            <div class="info-box">
+                💡 <strong>Novo!</strong> Configure sua obra com todos os detalhes para acompanhamento preciso!
             </div>
+
+            <div id="budget-select-list"></div>
+
+            <h3>Configuração da Obra</h3>
             
             <div class="form-group">
-                <label>Carregar Orçamento Salvo:</label>
-                <div id="budget-select-list"></div>
-                <div class="info-box" style="margin-top: 10px;">
-                    💡 Selecione um orçamento salvo ou crie um novo projeto abaixo
-                </div>
-            </div>
-            
-            <div class="form-group">
-                <label>Nome do Projeto:</label>
+                <label>Nome do Projeto</label>
                 <input type="text" id="project-name" placeholder="Ex: Reforma Cozinha">
             </div>
-            
+
             <div class="form-group">
-                <label>Prazo Total (dias):</label>
-                <input type="number" id="total-days" placeholder="Ex: 30" min="1">
+                <label>Tipo de Ambiente</label>
+                <select id="track-type">
+                    <option value="">Selecione...</option>
+                    <option value="cozinha">🍳 Cozinha</option>
+                    <option value="banheiro">🚿 Banheiro</option>
+                    <option value="quarto">🛏️ Quarto</option>
+                    <option value="sala">🛋️ Sala</option>
+                </select>
             </div>
-            
-            <button class="btn btn-primary" style="width: 100%; margin-top: 20px;" onclick="initTracking()">
-                ▶️ Iniciar Acompanhamento
+
+            <div class="form-group">
+                <label>Área (m²)</label>
+                <input type="number" id="track-area" placeholder="Ex: 12" step="0.1">
+            </div>
+
+            <h3>Serviços a Realizar</h3>
+
+            <div class="checkbox-group">
+                <input type="checkbox" id="track-piso">
+                <label for="track-piso">Trocar Piso</label>
+            </div>
+
+            <div class="checkbox-group">
+                <input type="checkbox" id="track-revestimento">
+                <label for="track-revestimento">Trocar Revestimento</label>
+            </div>
+
+            <div class="checkbox-group">
+                <input type="checkbox" id="track-pintura">
+                <label for="track-pintura">Fazer Pintura</label>
+            </div>
+
+            <div class="checkbox-group">
+                <input type="checkbox" id="track-eletrica">
+                <label for="track-eletrica">⚡ Refazer Elétrica</label>
+            </div>
+
+            <div class="checkbox-group">
+                <input type="checkbox" id="track-hidraulica">
+                <label for="track-hidraulica">💧 Refazer Hidráulica</label>
+            </div>
+
+            <div class="checkbox-group">
+                <input type="checkbox" id="track-demolir">
+                <label for="track-demolir">🔨 Demolir Parede</label>
+            </div>
+
+            <h3>Mão de Obra Contratada</h3>
+
+            <div class="worker-input">
+                <label>👷 Pedreiros</label>
+                <div class="worker-inputs-row">
+                    <div>
+                        <label>Quantidade</label>
+                        <input type="number" id="track-pedreiros" placeholder="0" min="0" value="0">
+                    </div>
+                    <div>
+                        <label>Horas/dia</label>
+                        <input type="number" id="track-pedreiros-horas" placeholder="8" min="0" step="0.5" value="8">
+                    </div>
+                </div>
+            </div>
+
+            <div class="worker-input">
+                <label>🧑‍🔧 Ajudantes</label>
+                <div class="worker-inputs-row">
+                    <div>
+                        <label>Quantidade</label>
+                        <input type="number" id="track-ajudantes" placeholder="0" min="0" value="0">
+                    </div>
+                    <div>
+                        <label>Horas/dia</label>
+                        <input type="number" id="track-ajudantes-horas" placeholder="8" min="0" step="0.5" value="8">
+                    </div>
+                </div>
+            </div>
+
+            <div class="worker-input">
+                <label>🎨 Pintores</label>
+                <div class="worker-inputs-row">
+                    <div>
+                        <label>Quantidade</label>
+                        <input type="number" id="track-pintores" placeholder="0" min="0" value="0">
+                    </div>
+                    <div>
+                        <label>Horas/dia</label>
+                        <input type="number" id="track-pintores-horas" placeholder="8" min="0" step="0.5" value="8">
+                    </div>
+                </div>
+            </div>
+
+            <div class="worker-input">
+                <label>⚡ Eletricistas</label>
+                <div class="worker-inputs-row">
+                    <div>
+                        <label>Quantidade</label>
+                        <input type="number" id="track-eletricistas" placeholder="0" min="0" value="0">
+                    </div>
+                    <div>
+                        <label>Horas/dia</label>
+                        <input type="number" id="track-eletricistas-horas" placeholder="8" min="0" step="0.5" value="8">
+                    </div>
+                </div>
+            </div>
+
+            <div class="worker-input">
+                <label>🔧 Encanadores</label>
+                <div class="worker-inputs-row">
+                    <div>
+                        <label>Quantidade</label>
+                        <input type="number" id="track-encanadores" placeholder="0" min="0" value="0">
+                    </div>
+                    <div>
+                        <label>Horas/dia</label>
+                        <input type="number" id="track-encanadores-horas" placeholder="8" min="0" step="0.5" value="8">
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>Prazo Total Estimado (dias úteis)</label>
+                <input type="number" id="total-days" placeholder="Ex: 15" min="1">
+                <div class="info-box">💡 Será calculado automaticamente com base nos serviços e equipe</div>
+            </div>
+
+            <button class="btn btn-primary" onclick="initTracking()" style="width: 100%; margin-top: 20px;">
+                Iniciar Acompanhamento
             </button>
-            
-            <div id="tracking-content" class="hidden" style="margin-top: 30px;">
+
+            <div id="tracking-content" class="hidden">
+                <h3 style="margin-top: 30px;">📈 Progresso da Obra</h3>
+                
                 <div class="progress-bar">
-                    <div class="progress-fill" id="progress-fill" style="width: 0%">0%</div>
+                    <div class="progress-fill" id="progress-fill" style="width: 0%;">0%</div>
                 </div>
-                
-                <h3 style="text-align: left;">✅ Etapas da Obra:</h3>
+
+                <div style="text-align: center; font-size: 1.2em; margin: 20px 0;">
+                    <strong>Dias Trabalhados:</strong> <span id="days-worked">0</span> de <span id="total-days-display">0</span>
+                </div>
+
                 <div id="tracking-items"></div>
-                
-                <div class="result-item total" style="margin-top: 20px;">
-                    <span>Dias Trabalhados:</span>
-                    <span id="days-worked">0</span>
-                </div>
             </div>
         </div>
-        
-        <!-- SUSTENTABILIDADE -->
-        <div id="sustainability-screen" class="hidden">
+
+        <!-- ESTRATÉGIAS SUSTENTÁVEIS -->
+        <div id="sustainability" class="screen">
             <button class="btn-back" onclick="showScreen('home')">← Voltar</button>
+            <h2>🌱 Estratégias Sustentáveis</h2>
             
-            <div class="header">
-                <h1>🌱 Estratégias Sustentáveis</h1>
-                <p>Economize Água, Energia e Proteja o Planeta</p>
+            <div class="info-box">
+                <strong>💚 Transforme sua reforma em um projeto sustentável!</strong><br>
+                Economize dinheiro, reduza impacto ambiental e valorize seu imóvel!
             </div>
-            
-            <div class="strategy-card">
-                <h3>💧 Captação de Água da Chuva (Cisterna)</h3>
-                <p><strong>O que é:</strong> Sistema que coleta água da chuva do telhado e armazena em cisterna para reuso.</p>
-                <p><strong>Usos:</strong> Descarga, lavagem de pisos, irrigação de jardins, limpeza de áreas externas.</p>
-                <div class="roi-box">
-                    <div class="result-item"><span>💰 Investimento Inicial:</span><span>R$ 2.500 - R$ 8.000</span></div>
-                    <div class="result-item"><span>💵 Economia Mensal:</span><span>R$ 80 - R$ 200 (30-50% da conta)</span></div>
-                    <div class="result-item"><span>⏰ Retorno (Payback):</span><span>2-4 anos</span></div>
-                    <div class="result-item"><span>🌍 Água Economizada:</span><span>15.000 - 30.000 litros/ano</span></div>
+
+            <div class="sustainability-card">
+                <h4>💧 Reaproveitamento de Água</h4>
+                <p>Sistemas que captam água da chuva ou reutilizam água cinza (de pias, chuveiros) para uso em vasos sanitários, limpeza e irrigação.</p>
+                
+                <div class="sustainability-option">
+                    <strong>Sistema Básico (R$ 800 - R$ 1.200)</strong>
+                    <p>• Captação de água da pia da cozinha<br>
+                    • Reservatório de 100L<br>
+                    • Filtro básico<br>
+                    • Economia: até 15% na conta de água</p>
                 </div>
-                <div class="info-box">
-                    ✅ Reduz enchentes na cidade<br>
-                    ✅ Independência em períodos de racionamento<br>
-                    ✅ Valoriza o imóvel em 5-10%
+
+                <div class="sustainability-option">
+                    <strong>Sistema Intermediário (R$ 1.500 - R$ 2.500)</strong>
+                    <p>• Captação de água do chuveiro<br>
+                    • Reservatório de 200L<br>
+                    • Sistema de filtragem completo<br>
+                    • Economia: até 30% na conta de água</p>
                 </div>
-            </div>
-            
-            <div class="strategy-card">
-                <h3>♻️ Reuso de Água Cinza</h3>
-                <p><strong>O que é:</strong> Tratamento e reutilização da água de chuveiros, lavatórios e tanques.</p>
-                <p><strong>Usos:</strong> Descargas, irrigação, lavagem de pisos (NÃO para consumo).</p>
-                <div class="roi-box">
-                    <div class="result-item"><span>💰 Investimento Inicial:</span><span>R$ 3.000 - R$ 10.000</span></div>
-                    <div class="result-item"><span>💵 Economia Mensal:</span><span>R$ 100 - R$ 250 (40-60%)</span></div>
-                    <div class="result-item"><span>⏰ Retorno (Payback):</span><span>2-5 anos</span></div>
-                    <div class="result-item"><span>🌍 Água Economizada:</span><span>20.000 - 40.000 litros/ano</span></div>
+
+                <div class="sustainability-option">
+                    <strong>Sistema Completo (R$ 2.500 - R$ 5.000)</strong>
+                    <p>• Captação de chuva + águas cinzas<br>
+                    • Reservatório de 500L<br>
+                    • Tratamento UV<br>
+                    • Bombeamento automático<br>
+                    • Economia: até 50% na conta de água</p>
                 </div>
-                <div class="info-box">
-                    ✅ Maior economia de água que cisterna<br>
-                    ✅ Sistema funciona o ano todo<br>
-                    ✅ Reduz carga em estações de tratamento
-                </div>
-            </div>
-            
-            <div class="strategy-card">
-                <h3>☀️ Energia Solar Fotovoltaica</h3>
-                <p><strong>O que é:</strong> Painéis solares que convertem luz do sol em energia elétrica.</p>
-                <p><strong>Benefício:</strong> Redução de até 95% na conta de luz.</p>
-                <div class="roi-box">
-                    <div class="result-item"><span>💰 Investimento Inicial:</span><span>R$ 15.000 - R$ 30.000</span></div>
-                    <div class="result-item"><span>💵 Economia Mensal:</span><span>R$ 300 - R$ 600 (80-95%)</span></div>
-                    <div class="result-item"><span>⏰ Retorno (Payback):</span><span>4-7 anos</span></div>
-                    <div class="result-item"><span>🔋 Vida Útil:</span><span>25+ anos</span></div>
-                    <div class="result-item"><span>🌍 CO2 Evitado:</span><span>1,5 toneladas/ano</span></div>
-                </div>
-                <div class="info-box">
-                    ✅ Valoriza imóvel em 15-20%<br>
-                    ✅ Proteção contra aumento de energia<br>
-                    ✅ Financiamento disponível com juros baixos
+
+                <div style="background: #fff3cd; padding: 15px; border-radius: 8px; margin-top: 15px;">
+                    <strong>🤔 Quer implementar na sua reforma?</strong><br>
+                    Marque a opção "Reaproveitamento de Água" ao fazer seu orçamento!
                 </div>
             </div>
-            
-            <div class="strategy-card">
-                <h3>🌿 Telhado Verde (Cobertura Ajardinada)</h3>
-                <p><strong>O que é:</strong> Vegetação plantada sobre o telhado com impermeabilização especial.</p>
-                <p><strong>Benefício:</strong> Reduz temperatura interna em até 8°C.</p>
-                <div class="roi-box">
-                    <div class="result-item"><span>💰 Investimento Inicial:</span><span>R$ 150 - R$ 300/m²</span></div>
-                    <div class="result-item"><span>💵 Economia Mensal:</span><span>R$ 50 - R$ 150 (redução ar-condicionado)</span></div>
-                    <div class="result-item"><span>⏰ Retorno (Payback):</span><span>5-10 anos</span></div>
-                    <div class="result-item"><span>🌱 Absorção CO2:</span><span>200g/m²/ano</span></div>
+
+            <div class="sustainability-card">
+                <h4>☀️ Energia Solar</h4>
+                <p>Painéis fotovoltaicos que convertem luz solar em energia elétrica, reduzindo drasticamente sua conta de luz.</p>
+                
+                <div class="sustainability-option">
+                    <strong>Kit Residencial Pequeno (R$ 12.000 - R$ 18.000)</strong>
+                    <p>• 4-6 painéis (1,6 kWp)<br>
+                    • Economia: até 50% na conta de luz<br>
+                    • Retorno do investimento: 4-6 anos<br>
+                    • Ideal para: casas até 80m²</p>
                 </div>
-                <div class="info-box">
-                    ✅ Aumenta vida útil da impermeabilização<br>
-                    ✅ Melhora qualidade do ar<br>
-                    ✅ Reduz ruídos externos em até 40dB<br>
-                    ✅ Desconto de até 10% no IPTU em algumas cidades
+
+                <div class="sustainability-option">
+                    <strong>Kit Residencial Médio (R$ 18.000 - R$ 28.000)</strong>
+                    <p>• 8-12 painéis (3,2 kWp)<br>
+                    • Economia: até 75% na conta de luz<br>
+                    • Retorno do investimento: 5-7 anos<br>
+                    • Ideal para: casas de 80-150m²</p>
                 </div>
-            </div>
-            
-            <div class="strategy-card">
-                <h3>💡 Iluminação LED + Sensores</h3>
-                <p><strong>O que é:</strong> Substituição de lâmpadas por LED e instalação de sensores de presença.</p>
-                <div class="roi-box">
-                    <div class="result-item"><span>💰 Investimento Inicial:</span><span>R$ 800 - R$ 2.000</span></div>
-                    <div class="result-item"><span>💵 Economia Mensal:</span><span>R$ 40 - R$ 100 (30-50% iluminação)</span></div>
-                    <div class="result-item"><span>⏰ Retorno (Payback):</span><span>1-2 anos</span></div>
-                    <div class="result-item"><span>💡 Vida Útil LED:</span><span>25.000 - 50.000 horas</span></div>
+
+                <div class="sustainability-option">
+                    <strong>Kit Residencial Grande (R$ 28.000 - R$ 45.000)</strong>
+                    <p>• 14-20 painéis (5+ kWp)<br>
+                    • Economia: até 95% na conta de luz<br>
+                    • Retorno do investimento: 6-8 anos<br>
+                    • Ideal para: casas acima de 150m²</p>
                 </div>
-                <div class="info-box">
-                    ✅ Investimento mais baixo e rápido retorno<br>
-                    ✅ LED não esquenta o ambiente<br>
-                    ✅ Sensores economizam até 60% adicional
-                </div>
-            </div>
-            
-            <div class="strategy-card">
-                <h3>🚰 Dispositivos Economizadores</h3>
-                <p><strong>O que é:</strong> Torneiras com arejador, chuveiros econômicos, descargas com duplo acionamento.</p>
-                <div class="roi-box">
-                    <div class="result-item"><span>💰 Investimento Inicial:</span><span>R$ 400 - R$ 1.500</span></div>
-                    <div class="result-item"><span>💵 Economia Mensal:</span><span>R$ 60 - R$ 150 (30-50%)</span></div>
-                    <div class="result-item"><span>⏰ Retorno (Payback):</span><span>6-12 meses</span></div>
-                    <div class="result-item"><span>🌍 Água Economizada:</span><span>40.000 - 60.000 litros/ano</span></div>
-                </div>
-                <div class="info-box">
-                    ✅ Mais barato e rápido de implementar<br>
-                    ✅ Não requer obra<br>
-                    ✅ Retorno em menos de 1 ano
+
+                <div style="background: #fff3cd; padding: 15px; border-radius: 8px; margin-top: 15px;">
+                    <strong>💡 Dica:</strong> Em reformas maiores, aproveite para planejar a estrutura do telhado para receber painéis solares no futuro!
                 </div>
             </div>
-            
-            <div class="strategy-card">
-                <h3>🌬️ Ventilação Natural + Iluminação Natural</h3>
-                <p><strong>O que é:</strong> Projeto que maximiza entrada de luz solar e circulação de ar natural.</p>
-                <p><strong>Inclui:</strong> Janelas bem posicionadas, claraboias, ventilação cruzada.</p>
-                <div class="roi-box">
-                    <div class="result-item"><span>💰 Investimento Inicial:</span><span>R$ 0 - R$ 3.000</span></div>
-                    <div class="result-item"><span>💵 Economia Mensal:</span><span>R$ 80 - R$ 200</span></div>
-                    <div class="result-item"><span>⏰ Retorno (Payback):</span><span>0-2 anos</span></div>
+
+            <div class="sustainability-card">
+                <h4>♻️ Materiais Reciclados e Sustentáveis</h4>
+                <p>Materiais de construção ecológicos que reduzem impacto ambiental sem perder qualidade.</p>
+                
+                <div class="sustainability-option">
+                    <strong>Pisos Sustentáveis</strong>
+                    <p>• Bambu: renovável, durável, bonito (R$ 120/m²)<br>
+                    • Porcelanato Eco: 30% material reciclado (R$ 105/m²)<br>
+                    • Laminado Ecológico: madeira certificada (R$ 95/m²)</p>
                 </div>
-                <div class="info-box">
-                    ✅ Reduz uso de luz artificial em 40-60%<br>
-                    ✅ Reduz uso de ar-condicionado<br>
-                    ✅ Melhora saúde e bem-estar
+
+                <div class="sustainability-option">
+                    <strong>Tintas Ecológicas</strong>
+                    <p>• Sem VOC (compostos voláteis)<br>
+                    • Base água<br>
+                    • Não tóxicas<br>
+                    • Preço: +15% sobre tinta convencional</p>
                 </div>
-            </div>
-            
-            <div class="strategy-card">
-                <h3>♻️ Compostagem Doméstica</h3>
-                <p><strong>O que é:</strong> Transformar restos orgânicos em adubo.</p>
-                <div class="roi-box">
-                    <div class="result-item"><span>💰 Investimento Inicial:</span><span>R$ 150 - R$ 500</span></div>
-                    <div class="result-item"><span>💵 Economia Mensal:</span><span>R$ 20 - R$ 50 (adubo)</span></div>
-                    <div class="result-item"><span>⏰ Retorno (Payback):</span><span>1-2 anos</span></div>
-                    <div class="result-item"><span>🌍 Lixo Reduzido:</span><span>200-400 kg/ano</span></div>
-                </div>
-                <div class="info-box">
-                    ✅ Reduz 30-40% do lixo doméstico<br>
-                    ✅ Adubo grátis para jardim/horta<br>
-                    ✅ Reduz metano em aterros
+
+                <div class="sustainability-option">
+                    <strong>Louças Economizadoras</strong>
+                    <p>• Vaso sanitário duplo fluxo: economiza 40% de água<br>
+                    • Torneiras aeradoras: reduzem vazão em 50%<br>
+                    • Chuveiros eco: 30% menos água<br>
+                    • Preço: similar às convencionais</p>
                 </div>
             </div>
-            
-            <div class="impact-summary">
-                <h3>🌍 Impacto Combinado das Estratégias</h3>
-                <p><strong>Se você implementar TODAS essas estratégias em uma casa:</strong></p>
-                <div class="result-item"><span>💰 Investimento Total:</span><span>R$ 22.000 - R$ 55.000</span></div>
-                <div class="result-item"><span>💵 Economia Mensal:</span><span>R$ 730 - R$ 1.650</span></div>
-                <div class="result-item"><span>📅 Economia Anual:</span><span>R$ 8.760 - R$ 19.800</span></div>
-                <div class="result-item"><span>⏰ Payback Total:</span><span>3-6 anos</span></div>
-                <div class="result-item"><span>💚 Economia 30 anos:</span><span>R$ 262.800 - R$ 594.000</span></div>
-                <div class="result-item"><span>🌍 CO2 Evitado/Ano:</span><span>3-5 toneladas</span></div>
-                <div class="result-item"><span>🌳 Equivalente:</span><span>700-1.200 árvores plantadas</span></div>
+
+            <div class="sustainability-card">
+                <h4>🌡️ Isolamento Térmico</h4>
+                <p>Reduz necessidade de ar condicionado e aquecimento, economizando energia.</p>
+                
+                <div class="sustainability-option">
+                    <strong>Telhado Verde (R$ 150-300/m²)</strong>
+                    <p>• Camada de vegetação no telhado<br>
+                    • Reduz temperatura interna em até 5°C<br>
+                    • Retém água da chuva<br>
+                    • Aumenta vida útil do telhado</p>
+                </div>
+
+                <div class="sustainability-option">
+                    <strong>Mantas Térmicas (R$ 30-80/m²)</strong>
+                    <p>• Instaladas sob o telhado<br>
+                    • Bloqueiam até 95% do calor<br>
+                    • Fácil instalação<br>
+                    • Economia de 30% em ar condicionado</p>
+                </div>
+            </div>
+
+            <div class="sustainability-card">
+                <h4>💨 Ventilação Natural</h4>
+                <p>Projeto inteligente que reduz necessidade de ar condicionado.</p>
+                
+                <div class="sustainability-option">
+                    <strong>Estratégias</strong>
+                    <p>• Posicionamento estratégico de janelas<br>
+                    • Uso de venezianas e cobogós<br>
+                    • Criação de corredores de vento<br>
+                    • Pé-direito alto para circulação de ar</p>
+                </div>
+            </div>
+
+            <div style="background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%); padding: 25px; border-radius: 15px; margin-top: 30px; text-align: center;">
+                <h3 style="color: #2e7d32; margin-bottom: 15px;">💚 Impacto Ambiental Positivo</h3>
+                <p style="font-size: 1.1em; color: #1b5e20;">
+                    Ao escolher materiais e sistemas sustentáveis, você:<br>
+                    ✅ Reduz emissões de CO₂<br>
+                    ✅ Economiza recursos naturais<br>
+                    ✅ Diminui desperdício de água e energia<br>
+                    ✅ Valoriza seu imóvel em até 20%<br>
+                    ✅ Economiza dinheiro a longo prazo
+                </p>
             </div>
         </div>
     </div>
-    
+
     <script>
-        let currentState = 1.0;
-        let selectedMaterials = {};
-        let walls = [];
-        let trackingSteps = [];
+        let currentState = 1.0; // ES como base
         let savedBudgets = [];
-        let currentBudget = null;
-        
-        const specificMaterials = {
-            porcelanato: [
-                {name: 'Portobello 60x60 Branco', price: 95},
-                {name: 'Eliane Eco 60x60', price: 90, eco: true},
-                {name: 'Cecrisa 80x80', price: 120},
-                {name: 'Portinari HD', price: 135},
-                {name: 'Incepa Esmaltado', price: 110},
-                {name: 'Ceusa Green Line', price: 92, eco: true},
-                {name: 'Outro (informar valor)', price: 0, custom: true}
-            ],
-            ceramica: [
-                {name: 'Cecrisa 45x45', price: 55},
-                {name: 'Eliane 50x50', price: 65},
-                {name: 'Incefra Popular', price: 52},
-                {name: 'Portobello Básico', price: 60},
-                {name: 'Outro (informar valor)', price: 0, custom: true}
-            ],
-            laminado: [
-                {name: 'Durafloor New Way', price: 65},
-                {name: 'Eucafloor Prime', price: 75},
-                {name: 'Durafloor Studio', price: 95},
-                {name: 'Eucafloor Elegance', price: 85},
-                {name: 'Altro (informar valor)', price: 0, custom: true}
-            ],
-            bambu: [
-                {name: 'Bambutec Carbonizado', price: 95, eco: true},
-                {name: 'Eucafloor Eco Bambu', price: 105, eco: true},
-                {name: 'Bamboomax Natural', price: 98, eco: true},
-                {name: 'BambuBrasil Premium', price: 110, eco: true},
-                {name: 'Outro (informar valor)', price: 0, custom: true}
-            ],
-            pintura: [
-                {name: 'Suvinil Látex', price: 25},
-                {name: 'Coral Acrílica', price: 28},
-                {name: 'Sherwin Williams', price: 35},
-                {name: 'Suvinil Carbono Zero', price: 32, eco: true},
-                {name: 'Coral Ecocryl', price: 30, eco: true},
-                {name: 'Killing Green', price: 34, eco: true},
-                {name: 'Outro (informar valor)', price: 0, custom: true}
-            ],
-            azulejo: [
-                {name: 'Eliane Branco', price: 55},
-                {name: 'Portobello Brilhante', price: 65},
-                {name: 'Cecrisa Premium', price: 75},
-                {name: 'Incepa Green Eco', price: 75, eco: true},
-                {name: 'Ceusa Sustentável', price: 70, eco: true},
-                {name: 'Outro (informar valor)', price: 0, custom: true}
-            ],
-            loucas: [
-                {name: 'Kit Básico Deca (vaso + pia + chuveiro + 2 torneiras)', price: 1200},
-                {name: 'Kit Premium Deca (vaso dual + cuba + chuveiro elétrico)', price: 2500},
-                {name: 'Kit Eco Deca (descarga 3/6L + torneiras arejadoras)', price: 1800, eco: true},
-                {name: 'Kit Docol Duo Econômico', price: 1650, eco: true},
-                {name: 'Outro (informar valor)', price: 0, custom: true}
-            ],
-            bancada: [
-                {name: 'Sem Bancada', price: 0},
-                {name: 'Granito Cinza Corumbá', price: 350},
-                {name: 'Mármore Branco', price: 450},
-                {name: 'Quartzo Branco Prime', price: 650},
-                {name: 'Silestone Eco 75% Reciclado', price: 700, eco: true},
-                {name: 'Dekton Sustentável', price: 680, eco: true},
-                {name: 'Outro (informar valor)', price: 0, custom: true}
-            ]
-        };
-        
-        function showScreen(screen) {
-            currentState = parseFloat(document.getElementById('state').value);
-            ['home', 'normal', 'reverse', 'tracking', 'sustainability'].forEach(s => {
-                document.getElementById(s + '-screen').classList.add('hidden');
-            });
-            document.getElementById(screen + '-screen').classList.remove('hidden');
+        let trackingSteps = [];
+        let wallCounters = {coz: 0, ban: 0};
+
+        // Carregar orçamentos salvos do localStorage ao iniciar
+        function loadFromStorage() {
+            const stored = localStorage.getItem('obra-inteligente-budgets');
+            if (stored) {
+                try {
+                    savedBudgets = JSON.parse(stored);
+                } catch (e) {
+                    console.error('Erro ao carregar orçamentos salvos:', e);
+                    savedBudgets = [];
+                }
+            }
+        }
+
+        // Salvar orçamentos no localStorage
+        function saveToStorage() {
+            try {
+                localStorage.setItem('obra-inteligente-budgets', JSON.stringify(savedBudgets));
+            } catch (e) {
+                console.error('Erro ao salvar orçamentos:', e);
+            }
+        }
+
+        // Carregar dados ao iniciar
+        loadFromStorage();
+
+        function showScreen(screenId) {
+            document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+            document.getElementById(screenId).classList.add('active');
             
-            if (screen === 'home') {
-                loadSavedBudgets();
-            } else if (screen === 'tracking') {
+            if (screenId === 'tracking') {
                 loadBudgetSelectList();
             }
         }
-        
-        function updateNormalFields() {
-            const type = document.getElementById('project-type').value;
-            const container = document.getElementById('normal-fields');
-            container.innerHTML = '';
-            selectedMaterials = {};
-            walls = [];
-            
-            if (!type) return;
-            
-            container.innerHTML = `
-                <div class="form-group">
-                    <label>📐 Área do Piso (m²):</label>
-                    <input type="number" id="area" placeholder="Ex: 10" min="1">
-                </div>
-            `;
-            
-            if (type === 'cozinha' || type === 'banheiro') {
-                addKitchenBathroomFields(type);
-            } else if (type === 'quarto' || type === 'sala') {
-                addBedroomLivingFields(type);
-            } else if (type === 'casa') {
-                addCasaFields();
-            }
-            
-            if (type !== 'casa') {
-                container.innerHTML += `
-                    <div class="form-group">
-                        <div class="checkbox-group">
-                            <input type="checkbox" id="demolition" onchange="toggleDemolition()">
-                            <label for="demolition" style="margin: 0;">🔨 Precisa demolir alguma parede?</label>
-                        </div>
-                        <div id="demolition-inputs" class="hidden" style="margin-top: 10px;">
-                            <input type="number" id="demolition-area" placeholder="Área da parede (m²)" min="0.1" step="0.1">
-                            <div class="warning" style="margin-top: 10px;">
-                                ⚠️ ATENÇÃO: Consulte um engenheiro civil antes de demolir para verificar se não é parede estrutural!
-                            </div>
-                        </div>
-                    </div>
-                `;
-                
-                let installations = '<div class="form-group"><label>⚡ Instalações:</label>';
-                
+
+        function updateState() {
+            const stateSelect = document.getElementById('state') || document.getElementById('rev-state');
+            currentState = parseFloat(stateSelect.value);
+        }
+
+        function showReformForm() {
+            const type = document.getElementById('reform-type').value;
+            ['cozinha', 'banheiro', 'casa', 'quarto', 'sala'].forEach(t => {
+                document.getElementById('form-' + t).classList.add('hidden');
+            });
+            if (type) {
+                document.getElementById('form-' + type).classList.remove('hidden');
                 if (type === 'cozinha' || type === 'banheiro') {
-                    installations += `
-                        <div class="checkbox-group">
-                            <input type="checkbox" id="plumbing">
-                            <label for="plumbing" style="margin: 0;">💧 Refazer Hidráulica</label>
-                        </div>
-                    `;
+                    addWall(type.substring(0, 3));
                 }
-                
-                installations += `
-                    <div class="checkbox-group">
-                        <input type="checkbox" id="electrical">
-                        <label for="electrical" style="margin: 0;">⚡ Refazer Elétrica</label>
-                    </div>
-                </div>`;
-                
-                container.innerHTML += installations;
             }
         }
-        
-        function addKitchenBathroomFields(type) {
-            const container = document.getElementById('normal-fields');
-            
-            container.innerHTML += `
-                <div class="form-group">
-                    <label>🧱 Paredes para Revestimento:</label>
-                    <div id="walls-container"></div>
-                    <button class="btn-add-wall" onclick="addWall()">+ Adicionar Parede</button>
-                    <div class="info-box">
-                        💡 ${type === 'cozinha' ? 'Cozinha: altura padrão 1,5m' : 'Banheiro: altura padrão até o teto (2,0-2,5m)'}<br>
-                        Adicione apenas as paredes que receberão revestimento
-                    </div>
-                </div>
-            `;
-            
-            addWall();
-            
-            addMaterialSelect('Piso', 'piso', ['ceramica', 'porcelanato']);
-            addMaterialSelect('Azulejo/Revestimento', 'azulejo', ['azulejo']);
-            
-            if (type === 'cozinha') {
-                addMaterialSelect('Bancada', 'bancada', ['bancada']);
-                container.innerHTML += `
-                    <div class="form-group" id="bancada-length-group" style="display: none;">
-                        <label>📏 Comprimento da Bancada (metros lineares):</label>
-                        <input type="number" id="bancada-length" placeholder="Ex: 2.5" min="0" step="0.1">
-                        <div class="info-box">💡 Bancadas são vendidas por metro linear (largura padrão 60cm)</div>
-                    </div>
-                `;
+
+        // Handlers para mostrar/ocultar campos customizados
+        ['coz', 'ban', 'qua', 'sal'].forEach(prefix => {
+            ['piso', 'pintura', 'bancada'].forEach(field => {
+                const selectId = `${prefix}-${field}-tipo`;
+                const customId = `${prefix}-${field}-custom`;
+                if (document.getElementById(selectId)) {
+                    document.getElementById(selectId).addEventListener('change', function() {
+                        const custom = document.getElementById(customId);
+                        if (custom) {
+                            if (this.value === 'custom') {
+                                custom.classList.remove('hidden');
+                            } else {
+                                custom.classList.add('hidden');
+                            }
+                        }
+                    });
+                }
+            });
+        });
+
+        // Handlers para campos "Outro"
+        ['coz-piso', 'ban-piso', 'qua-piso', 'sal-piso', 'coz-pia', 'ban-loucas', 'ban-boxe'].forEach(id => {
+            const select = document.getElementById(id);
+            const custom = document.getElementById(id + '-custom');
+            if (select && custom) {
+                select.addEventListener('change', function() {
+                    if (this.value === 'custom') {
+                        custom.classList.remove('hidden');
+                    } else {
+                        custom.classList.add('hidden');
+                    }
+                });
             }
-            
-            if (type === 'banheiro') {
-                addMaterialSelect('Kit de Louças', 'loucas', ['loucas']);
-                container.innerHTML += `
-                    <div class="form-group">
-                        <label>🚿 Boxe:</label>
-                        <select id="boxe">
-                            <option value="0">Sem Boxe</option>
-                            <option value="450">Boxe Acrílico - R$ 450</option>
-                            <option value="850">Boxe Vidro Temperado - R$ 850</option>
-                            <option value="1200">Boxe Blindex - R$ 1.200</option>
-                        </select>
-                    </div>
-                `;
+        });
+
+        // Handlers para checkboxes
+        const checkboxHandlers = {
+            'coz-bancada': 'coz-bancada-options',
+            'coz-pia': 'coz-pia-options',
+            'coz-reuso': 'coz-reuso-options',
+            'coz-demolir': 'coz-demolir-options',
+            'coz-pintura': 'coz-pintura-options',
+            'ban-loucas': 'ban-loucas-options',
+            'ban-boxe': 'ban-boxe-options',
+            'ban-banheira': 'ban-banheira-options',
+            'ban-reuso': 'ban-reuso-options',
+            'ban-demolir': 'ban-demolir-options',
+            'ban-pintura': 'ban-pintura-options',
+            'casa-reuso': 'casa-reuso-options',
+            'casa-solar': 'casa-solar-options',
+            'qua-demolir': 'qua-demolir-options',
+            'sal-demolir': 'sal-demolir-options',
+            'rev-cozinha': 'rev-cozinha-area-div',
+            'rev-banheiro': 'rev-banheiro-area-div',
+            'rev-quarto': 'rev-quarto-area-div',
+            'rev-sala': 'rev-sala-area-div'
+        };
+
+        Object.keys(checkboxHandlers).forEach(checkboxId => {
+            const checkbox = document.getElementById(checkboxId);
+            const targetDiv = document.getElementById(checkboxHandlers[checkboxId]);
+            if (checkbox && targetDiv) {
+                checkbox.addEventListener('change', function() {
+                    if (this.checked) {
+                        targetDiv.classList.remove('hidden');
+                    } else {
+                        targetDiv.classList.add('hidden');
+                    }
+                });
             }
+        });
+
+        // Handlers especiais para pintura de quarto e sala
+        function setupPaintingHandlers(prefix) {
+            const pintarParedes = document.getElementById(prefix + '-pintar-paredes');
+            const pintarTeto = document.getElementById(prefix + '-pintar-teto');
+            const calcDiv = document.getElementById(prefix + '-pintura-calc');
+            const optionsDiv = document.getElementById(prefix + '-pintura-options');
+            const areaInput = document.getElementById(prefix + '-area');
+            const pinturaArea = document.getElementById(prefix + '-pintura-area');
+            const pinturaAuto = document.getElementById(prefix + '-pintura-auto');
+
+            function updatePaintingArea() {
+                const area = parseFloat(areaInput.value) || 0;
+                const paredes = pintarParedes.checked;
+                const teto = pintarTeto.checked;
+                
+                let multiplier = 0;
+                if (paredes && teto) {
+                    multiplier = 3.8; // Paredes + teto
+                } else if (paredes) {
+                    multiplier = 2.8; // Só paredes (aproximado)
+                } else if (teto) {
+                    multiplier = 1.0; // Só teto
+                }
+
+                const calculatedArea = area * multiplier;
+                pinturaAuto.textContent = calculatedArea.toFixed(1);
+                pinturaArea.value = calculatedArea.toFixed(1);
+
+                if (paredes || teto) {
+                    calcDiv.classList.remove('hidden');
+                    optionsDiv.classList.remove('hidden');
+                } else {
+                    calcDiv.classList.add('hidden');
+                    optionsDiv.classList.add('hidden');
+                }
+            }
+
+            if (pintarParedes) pintarParedes.addEventListener('change', updatePaintingArea);
+            if (pintarTeto) pintarTeto.addEventListener('change', updatePaintingArea);
+            if (areaInput) areaInput.addEventListener('input', updatePaintingArea);
         }
-        
-        function addWall() {
-            if (walls.length >= 6) {
-                alert('Máximo de 6 paredes');
-                return;
-            }
-            
-            const wallId = walls.length;
-            walls.push({id: wallId, width: 0, height: 0});
-            
-            const container = document.getElementById('walls-container');
+
+        setupPaintingHandlers('qua');
+        setupPaintingHandlers('sal');
+
+        function addWall(prefix) {
+            wallCounters[prefix]++;
+            const wallsDiv = document.getElementById(prefix + '-walls');
             const wallDiv = document.createElement('div');
             wallDiv.className = 'wall-item';
-            wallDiv.id = 'wall-' + wallId;
+            wallDiv.id = `${prefix}-wall-${wallCounters[prefix]}`;
             wallDiv.innerHTML = `
-                <strong>Parede ${wallId + 1}</strong>
-                ${wallId > 0 ? '<button class="btn-remove-wall" onclick="removeWall(' + wallId + ')">Remover</button>' : ''}
-                <div class="grid-2" style="margin-top: 10px;">
-                    <input type="number" placeholder="Largura (m)" min="0.1" step="0.1" 
-                           onchange="updateWall(${wallId}, 'width', this.value)">
-                    <input type="number" placeholder="Altura (m)" min="0.1" step="0.1"
-                           onchange="updateWall(${wallId}, 'height', this.value)">
+                <button class="btn-remove-wall" onclick="removeWall('${prefix}', ${wallCounters[prefix]})">Remover</button>
+                <strong>Parede ${wallCounters[prefix]}</strong>
+                <div style="clear: both; margin-top: 10px;">
+                    <label>Largura (m)</label>
+                    <input type="number" id="${prefix}-wall-${wallCounters[prefix]}-width" placeholder="Ex: 3" step="0.1">
+                </div>
+                <div style="margin-top: 10px;">
+                    <label>Altura (m)</label>
+                    <input type="number" id="${prefix}-wall-${wallCounters[prefix]}-height" placeholder="Ex: 1.5" step="0.1">
+                </div>
+                <div style="margin-top: 10px;">
+                    <label>Tipo de Azulejo/Revestimento</label>
+                    <select id="${prefix}-wall-${wallCounters[prefix]}-type">
+                        <option value="75">Azulejo Eliane - R$ 75/m²</option>
+                        <option value="85">Azulejo Portobello - R$ 85/m²</option>
+                        <option value="95">Revestimento Incepa Green 🌱 - R$ 95/m²</option>
+                        <option value="custom">💰 Outro (digitar valor)</option>
+                    </select>
+                    <input type="number" id="${prefix}-wall-${wallCounters[prefix]}-custom" class="hidden" placeholder="Valor por m²" step="0.01">
                 </div>
             `;
-            container.appendChild(wallDiv);
-        }
-        
-        function removeWall(id) {
-            document.getElementById('wall-' + id).remove();
-            walls = walls.filter(w => w.id !== id);
-        }
-        
-        function updateWall(id, prop, value) {
-            const wall = walls.find(w => w.id === id);
-            if (wall) wall[prop] = parseFloat(value) || 0;
-        }
-        
-        function addBedroomLivingFields(type) {
-            const container = document.getElementById('normal-fields');
-            addMaterialSelect('Piso', 'piso', ['laminado', 'porcelanato', 'bambu']);
-            addMaterialSelect('Pintura', 'pintura', ['pintura']);
-        }
-        
-        function addCasaFields() {
-            const container = document.getElementById('normal-fields');
-            
-            container.innerHTML += `
-                <div class="form-group">
-                    <label>🏗️ Fundação:</label>
-                    <select id="fundacao">
-                        <option value="200">Sapata Corrida - R$ 200/m²</option>
-                        <option value="180">Radier - R$ 180/m²</option>
-                        <option value="280">Estacas - R$ 280/m²</option>
-                    </select>
-                </div>
-                
-                <div class="form-group">
-                    <label>🧱 Alvenaria:</label>
-                    <select id="alvenaria">
-                        <option value="150">Tijolo Cerâmico - R$ 150/m²</option>
-                        <option value="165">Bloco Cerâmico - R$ 165/m²</option>
-                        <option value="155">Bloco Concreto - R$ 155/m²</option>
-                        <option value="135-eco">🌱 Tijolo Ecológico Solo-Cimento - R$ 135/m² (Economiza 30%!)</option>
-                    </select>
-                </div>
-                
-                <div class="form-group">
-                    <label>🏠 Cobertura:</label>
-                    <select id="cobertura">
-                        <option value="120">Telha Cerâmica - R$ 120/m²</option>
-                        <option value="95">Fibrocimento - R$ 95/m²</option>
-                        <option value="110">Telha Metálica - R$ 110/m²</option>
-                        <option value="145">Telha Térmica - R$ 145/m²</option>
-                        <option value="125-eco">🌱 Telha Ecológica PET/Fibra - R$ 125/m² (Isolamento superior!)</option>
-                        <option value="165">Laje Pré-moldada - R$ 165/m²</option>
-                    </select>
-                </div>
-                
-                <div class="form-group">
-                    <label>🚪 Esquadrias (Portas e Janelas):</label>
-                    <select id="esquadrias">
-                        <option value="3800">Portas Pinus + Janelas Alumínio - R$ 3.800</option>
-                        <option value="3200">Portas Compensado + Janelas Alumínio - R$ 3.200</option>
-                        <option value="5200">Portas Madeira de Lei + Janelas - R$ 5.200</option>
-                        <option value="5500">Portas MDF + Janelas Alumínio - R$ 5.500</option>
-                    </select>
-                    <div class="info-box">
-                        💡 Madeira de Lei: mais cara mas muito durável<br>
-                        MDF: acabamento superior, resistente à umidade<br>
-                        Pinus/Compensado: opções econômicas
-                    </div>
-                </div>
-            `;
-            
-            addMaterialSelect('Piso Interno', 'piso', ['ceramica', 'porcelanato', 'laminado', 'bambu']);
-            addMaterialSelect('Pintura', 'pintura', ['pintura']);
-        }
-        
-        function addMaterialSelect(title, category, types) {
-            const container = document.getElementById('normal-fields');
-            let options = [];
-            
-            types.forEach(type => {
-                if (specificMaterials[type]) {
-                    options = options.concat(specificMaterials[type]);
-                }
-            });
-            
-            const hasEco = options.some(opt => opt.eco);
-            
-            let html = `<div class="form-group">`;
-            
-            if (hasEco) {
-                html += `
-                    <div class="eco-section">
-                        <h3>🌱 ${title} - Opções Sustentáveis</h3>
-                        <div style="display: grid; gap: 10px;">
-                `;
-                
-                options.filter(opt => opt.eco).forEach((opt, idx) => {
-                    const realIdx = options.indexOf(opt);
-                    html += `
-                        <div class="material-option eco" onclick="selectMaterialFromList('${category}', ${realIdx})">
-                            <div class="eco-badge">🌱 SUSTENTÁVEL</div>
-                            <div style="font-weight: bold;">${opt.name}</div>
-                            <div style="color: #2e7d32; font-size: 1.1em; font-weight: bold;">
-                                ${opt.price > 0 ? 'R$ ' + opt.price + (category === 'bancada' && opt.price > 0 ? '/m' : '/m²') : 'Personalize'}
-                            </div>
-                        </div>
-                    `;
-                });
-                
-                html += `</div></div>`;
-            }
-            
-            html += `<label>${title} - Todas as Opções:</label>
-                <select id="${category}-select" onchange="selectMaterialFromDropdown('${category}')">
-                    <option value="">Selecione...</option>`;
-            
-            options.forEach((opt, idx) => {
-                html += `<option value="${idx}" ${opt.eco ? 'style="color: #4caf50; font-weight: bold;"' : ''}>
-                    ${opt.eco ? '🌱 ' : ''}${opt.name} ${opt.price > 0 ? '- R$ ' + opt.price + (category === 'bancada' && opt.price > 0 ? '/m' : category === 'loucas' ? '' : '/m²') : ''}
-                </option>`;
-            });
-            
-            html += `</select>
-                <div id="${category}-custom" class="hidden" style="margin-top: 10px;">
-                    <input type="number" id="${category}-custom-value" placeholder="Digite o valor" min="0" step="0.01">
-                </div>
-            </div>`;
-            
-            container.innerHTML += html;
-            window['materials_' + category] = options;
-        }
-        
-        function selectMaterialFromList(category, idx) {
-            const select = document.getElementById(category + '-select');
-            select.value = idx;
-            selectMaterialFromDropdown(category);
-        }
-        
-        function selectMaterialFromDropdown(category) {
-            const select = document.getElementById(category + '-select');
-            const idx = parseInt(select.value);
-            const materials = window['materials_' + category];
-            
-            if (!isNaN(idx) && materials) {
-                selectedMaterials[category] = materials[idx];
-                
-                const customDiv = document.getElementById(category + '-custom');
-                if (materials[idx].custom) {
-                    customDiv.classList.remove('hidden');
+            wallsDiv.appendChild(wallDiv);
+
+            // Handler para "Outro"
+            document.getElementById(`${prefix}-wall-${wallCounters[prefix]}-type`).addEventListener('change', function() {
+                const custom = document.getElementById(`${prefix}-wall-${wallCounters[prefix]}-custom`);
+                if (this.value === 'custom') {
+                    custom.classList.remove('hidden');
                 } else {
-                    customDiv.classList.add('hidden');
+                    custom.classList.add('hidden');
                 }
+            });
+        }
+
+        function removeWall(prefix, id) {
+            const wallDiv = document.getElementById(`${prefix}-wall-${id}`);
+            if (wallDiv) wallDiv.remove();
+        }
+
+        function getWallsCost(prefix) {
+            let total = 0;
+            for (let i = 1; i <= wallCounters[prefix]; i++) {
+                const wallDiv = document.getElementById(`${prefix}-wall-${i}`);
+                if (!wallDiv) continue;
+
+                const width = parseFloat(document.getElementById(`${prefix}-wall-${i}-width`).value) || 0;
+                const height = parseFloat(document.getElementById(`${prefix}-wall-${i}-height`).value) || 0;
+                const typeSelect = document.getElementById(`${prefix}-wall-${i}-type`);
+                let price = parseFloat(typeSelect.value);
                 
-                if (category === 'bancada' && materials[idx].price > 0) {
-                    document.getElementById('bancada-length-group').style.display = 'block';
-                } else if (category === 'bancada') {
-                    document.getElementById('bancada-length-group').style.display = 'none';
+                if (typeSelect.value === 'custom') {
+                    price = parseFloat(document.getElementById(`${prefix}-wall-${i}-custom`).value) || 0;
                 }
+
+                total += width * height * price * currentState;
             }
+            return total;
         }
-        
-        function toggleDemolition() {
-            const checked = document.getElementById('demolition').checked;
-            document.getElementById('demolition-inputs').classList.toggle('hidden', !checked);
+
+        function getValue(id, defaultValue = 0) {
+            const el = document.getElementById(id);
+            if (!el) return defaultValue;
+            const val = parseFloat(el.value);
+            return isNaN(val) ? defaultValue : val;
         }
-        
-        function toggleReverseRoom(room) {
-            const checked = document.getElementById('rev-' + room).checked;
-            document.getElementById('rev-' + room + '-inputs').classList.toggle('hidden', !checked);
+
+        function getSelectValue(id) {
+            const select = document.getElementById(id);
+            if (!select) return 0;
+            if (select.value === 'custom') {
+                return getValue(id + '-custom', 0);
+            }
+            return parseFloat(select.value) || 0;
         }
-        
+
+        function isChecked(id) {
+            const el = document.getElementById(id);
+            return el ? el.checked : false;
+        }
+
         function formatCurrency(value) {
-            return value.toLocaleString('pt-BR', {minimumFractionDigits: 2, maximumFractionDigits: 2});
+            return value.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
         }
-        
-        function calculateNormal() {
-            const type = document.getElementById('project-type').value;
-            const area = parseFloat(document.getElementById('area').value);
-            
-            if (!type || !area) {
-                alert('Preencha todos os campos obrigatórios!');
-                return;
-            }
-            
-            let totalMaterials = 0;
-            let details = [];
-            let laborHours = 0;
-            let ecoCount = 0;
-            let co2Saved = 0;
-            
-            if (type === 'casa') {
-                calculateCasa(area);
-                return;
-            }
-            
-            if (selectedMaterials.piso) {
-                let pisoPrice = selectedMaterials.piso.price;
-                if (selectedMaterials.piso.custom) {
-                    pisoPrice = parseFloat(document.getElementById('piso-custom-value').value) || 0;
-                }
-                const cost = area * pisoPrice * currentState;
-                totalMaterials += cost;
-                details.push({label: `Piso ${selectedMaterials.piso.name}`, value: cost, eco: selectedMaterials.piso.eco});
-                laborHours += area * 1.5;
-                if (selectedMaterials.piso.eco) { ecoCount++; co2Saved += 0.2; }
-            }
-            
-            if ((type === 'cozinha' || type === 'banheiro') && selectedMaterials.azulejo) {
-                let totalWallArea = walls.reduce((sum, w) => sum + (w.width * w.height), 0);
-                
-                let azulejoPrice = selectedMaterials.azulejo.price;
-                if (selectedMaterials.azulejo.custom) {
-                    azulejoPrice = parseFloat(document.getElementById('azulejo-custom-value').value) || 0;
-                }
-                
-                if (totalWallArea > 0) {
-                    const cost = totalWallArea * azulejoPrice * currentState;
-                    totalMaterials += cost;
-                    details.push({label: `${selectedMaterials.azulejo.name} (${totalWallArea.toFixed(1)}m²)`, value: cost, eco: selectedMaterials.azulejo.eco});
-                    laborHours += totalWallArea * 2;
-                    if (selectedMaterials.azulejo.eco) { ecoCount++; co2Saved += 0.15; }
-                }
-            }
-            
-            if (type === 'cozinha' && selectedMaterials.bancada && selectedMaterials.bancada.price > 0) {
-                const length = parseFloat(document.getElementById('bancada-length').value) || 0;
-                if (length > 0) {
-                    let bancadaPrice = selectedMaterials.bancada.price;
-                    if (selectedMaterials.bancada.custom) {
-                        bancadaPrice = parseFloat(document.getElementById('bancada-custom-value').value) || 0;
-                    }
-                    const cost = length * bancadaPrice * currentState;
-                    totalMaterials += cost;
-                    details.push({label: `Bancada ${selectedMaterials.bancada.name} (${length}m)`, value: cost, eco: selectedMaterials.bancada.eco});
-                    laborHours += length * 3;
-                    if (selectedMaterials.bancada.eco) { ecoCount++; co2Saved += 0.1; }
-                }
-            }
-            
-            if (type === 'banheiro' && selectedMaterials.loucas) {
-                let loucasPrice = selectedMaterials.loucas.price;
-                if (selectedMaterials.loucas.custom) {
-                    loucasPrice = parseFloat(document.getElementById('loucas-custom-value').value) || 0;
-                }
-                const cost = loucasPrice * currentState;
-                totalMaterials += cost;
-                details.push({label: selectedMaterials.loucas.name, value: cost, eco: selectedMaterials.loucas.eco});
-                laborHours += 16;
-                if (selectedMaterials.loucas.eco) { ecoCount++; co2Saved += 0.3; }
-            }
-            
-            if (type === 'banheiro') {
-                const boxePrice = parseFloat(document.getElementById('boxe').value) || 0;
-                if (boxePrice > 0) {
-                    const cost = boxePrice * currentState;
-                    totalMaterials += cost;
-                    details.push({label: 'Boxe', value: cost});
-                    laborHours += 4;
-                }
-            }
-            
-            if ((type === 'quarto' || type === 'sala') && selectedMaterials.pintura) {
-                const paintArea = area * 3.8;
-                let pinturaPrice = selectedMaterials.pintura.price;
-                if (selectedMaterials.pintura.custom) {
-                    pinturaPrice = parseFloat(document.getElementById('pintura-custom-value').value) || 0;
-                }
-                const cost = paintArea * pinturaPrice * currentState;
-                totalMaterials += cost;
-                details.push({label: `Pintura ${selectedMaterials.pintura.name} (${paintArea.toFixed(1)}m²)`, value: cost, eco: selectedMaterials.pintura.eco});
-                laborHours += paintArea * 0.5;
-                if (selectedMaterials.pintura.eco) { ecoCount++; co2Saved += 0.25; }
-            }
-            
-            if (document.getElementById('plumbing')?.checked) {
-                const cost = area * 85 * currentState;
-                totalMaterials += cost;
-                details.push({label: 'Refazer Hidráulica', value: cost});
-                laborHours += area * 2.5;
-            }
-            
-            if (document.getElementById('electrical')?.checked) {
-                const cost = area * 95 * currentState;
-                totalMaterials += cost;
-                details.push({label: 'Refazer Elétrica', value: cost});
-                laborHours += area * 2;
-            }
-            
-            if (document.getElementById('demolition')?.checked) {
-                const demolArea = parseFloat(document.getElementById('demolition-area').value) || 0;
-                if (demolArea > 0) {
-                    const cost = demolArea * 120 * currentState;
-                    totalMaterials += cost;
-                    details.push({label: `Demolição (${demolArea}m²)`, value: cost});
-                    laborHours += demolArea * 3;
-                }
-            }
-            
-            const labor = totalMaterials * 0.50;
-            const baseTotal = totalMaterials + labor;
-            
-            const unexpected = baseTotal * 0.125;
-            const loss = baseTotal * 0.05;
-            const delay = baseTotal * 0.10;
-            const realisticTotal = baseTotal + unexpected + loss;
-            const safeTotal = baseTotal + unexpected + loss + delay;
-            
-            const workDays = Math.ceil(laborHours / 8);
-            const optimistic = Math.ceil(workDays * 0.8);
-            const realistic = workDays;
-            const delayed = Math.ceil(workDays * 1.4);
-            
-            const workers = type === 'banheiro' || type === 'cozinha' ? '1 pedreiro + 1 ajudante' : '1 instalador/pintor + 1 ajudante';
-            
-            currentBudget = {
-                type,
-                area,
-                materials: selectedMaterials,
-                baseTotal,
-                realisticTotal,
-                safeTotal,
-                workDays: realistic,
-                workers,
-                date: new Date().toLocaleDateString()
-            };
-            
-            displayResult(details, labor, baseTotal, unexpected, loss, delay, realisticTotal, safeTotal, 
-                          optimistic, realistic, delayed, workers, laborHours, ecoCount, co2Saved * area);
-        }
-        
-        function calculateCasa(area) {
-            const fundacao = parseFloat(document.getElementById('fundacao').value);
-            const alvenariaVal = document.getElementById('alvenaria').value.split('-');
-            const alvenaria = parseFloat(alvenariaVal[0]);
-            const alvEco = alvenariaVal[1] === 'eco';
-            
-            const coberturaVal = document.getElementById('cobertura').value.split('-');
-            const cobertura = parseFloat(coberturaVal[0]);
-            const cobEco = coberturaVal[1] === 'eco';
-            
-            const esquadrias = parseFloat(document.getElementById('esquadrias').value);
-            
-            let pisoPrice = selectedMaterials.piso?.price || 75;
-            let pisoEco = selectedMaterials.piso?.eco || false;
-            let pinturaPrice = selectedMaterials.pintura?.price || 25;
-            let pinturaEco = selectedMaterials.pintura?.eco || false;
-            
+
+        function calculateBudget(type) {
             let total = 0;
             let details = [];
-            let ecoCount = 0;
-            let co2Saved = 0;
+            let ecoItems = [];
             
-            total += area * fundacao * currentState;
-            details.push({label: 'Fundação', value: area * fundacao * currentState});
-            
-            total += area * alvenaria * currentState;
-            details.push({label: 'Alvenaria', value: area * alvenaria * currentState, eco: alvEco});
-            if (alvEco) { ecoCount++; co2Saved += area * 1.2; }
-            
-            const roofArea = area * 1.35;
-            total += roofArea * cobertura * currentState;
-            details.push({label: 'Cobertura', value: roofArea * cobertura * currentState, eco: cobEco});
-            if (cobEco) { ecoCount++; co2Saved += roofArea * 0.8; }
-            
-            total += esquadrias * currentState;
-            details.push({label: 'Esquadrias', value: esquadrias * currentState});
-            
-            total += area * pisoPrice * currentState;
-            details.push({label: 'Piso', value: area * pisoPrice * currentState, eco: pisoEco});
-            if (pisoEco) { ecoCount++; co2Saved += area * 0.3; }
-            
-            const paintArea = area * 3.8;
-            total += paintArea * pinturaPrice * currentState;
-            details.push({label: 'Pintura', value: paintArea * pinturaPrice * currentState, eco: pinturaEco});
-            if (pinturaEco) { ecoCount++; co2Saved += paintArea * 0.2; }
-            
-            total += area * 85 * currentState;
-            details.push({label: 'Hidráulica', value: area * 85 * currentState});
-            
-            total += area * 95 * currentState;
-            details.push({label: 'Elétrica', value: area * 95 * currentState});
-            
-            const labor = total * 0.65;
-            const baseTotal = total + labor;
-            
-            const unexpected = baseTotal * 0.125;
-            const loss = baseTotal * 0.05;
-            const delay = baseTotal * 0.10;
-            const realisticTotal = baseTotal + unexpected + loss;
-            const safeTotal = baseTotal + unexpected + loss + delay;
-            
-            const workDays = Math.ceil(area * 4);
-            const optimistic = Math.ceil(workDays * 0.8);
-            const realistic = workDays;
-            const delayed = Math.ceil(workDays * 1.4);
-            
-            const workers = '2 pedreiros + 2 ajudantes + 1 eletricista + 1 encanador';
-            const laborHours = workDays * 8 * 6;
-            
-            currentBudget = {
-                type: 'casa',
-                area,
-                materials: selectedMaterials,
-                baseTotal,
-                realisticTotal,
-                safeTotal,
-                workDays: realistic,
-                workers,
-                date: new Date().toLocaleDateString()
-            };
-            
-            displayResult(details, labor, baseTotal, unexpected, loss, delay, realisticTotal, safeTotal,
-                          optimistic, realistic, delayed, workers, laborHours, ecoCount, co2Saved);
-        }
-        
-        function displayResult(details, labor, baseTotal, unexpected, loss, delay, realisticTotal, safeTotal,
-                               optimistic, realistic, delayed, workers, laborHours, ecoCount, co2Saved) {
-            let html = '<div class="result">';
-            html += '<h2>📊 Orçamento Detalhado</h2>';
-            
-            details.forEach(item => {
-                const ecoMark = item.eco ? ' <span class="eco-badge">🌱 SUSTENTÁVEL</span>' : '';
-                html += `<div class="result-item"><span class="label">${item.label}${ecoMark}</span><span class="value">R$ ${formatCurrency(item.value)}</span></div>`;
-            });
-            
-            html += `<div class="result-item"><span class="label">Mão de Obra (Pedreiro + Ajudante)</span><span class="value">R$ ${formatCurrency(labor)}</span></div>`;
-            html += `<div class="result-item total"><span class="label">💰 Orçamento Base</span><span class="value">R$ ${formatCurrency(baseTotal)}</span></div>`;
-            
-            if (ecoCount > 0) {
-                html += '<div class="impact-summary">';
-                html += '<h3>🌍 Seu Impacto Sustentável</h3>';
-                html += `<div class="result-item"><span class="label">Materiais sustentáveis escolhidos</span><span class="value">${ecoCount} 🌱</span></div>`;
-                html += `<div class="result-item"><span class="label">CO2 evitado</span><span class="value">${co2Saved.toFixed(1)} toneladas</span></div>`;
-                html += `<div class="result-item"><span class="label">Equivalente a</span><span class="value">${Math.round(co2Saved * 235)} árvores plantadas 🌳</span></div>`;
-                html += '</div>';
+            // Pegar área baseado no tipo
+            let area;
+            if (type === 'casa') {
+                area = getValue('casa-area');
+            } else {
+                area = getValue(type.substring(0, 3) + '-area');
             }
             
-            html += '<div class="contingency">';
-            html += '<h3>⚠️ Contingências Recomendadas</h3>';
-            html += `<div class="result-item"><span class="label">Imprevistos (12,5%)</span><span class="value">R$ ${formatCurrency(unexpected)}</span></div>`;
-            html += `<div class="result-item"><span class="label">Perda Material (5%)</span><span class="value">R$ ${formatCurrency(loss)}</span></div>`;
-            html += `<div class="result-item"><span class="label">Atrasos/Falta MO (10%)</span><span class="value">R$ ${formatCurrency(delay)}</span></div>`;
-            html += `<div class="result-item" style="background: #fdd835;"><span class="label"><strong>💼 Orçamento Realista</strong></span><span class="value"><strong>R$ ${formatCurrency(realisticTotal)}</strong></span></div>`;
-            html += `<div class="result-item" style="background: #66bb6a; color: white;"><span class="label"><strong>📊 Orçamento Seguro</strong></span><span class="value"><strong>R$ ${formatCurrency(safeTotal)}</strong></span></div>`;
-            html += '</div>';
-            
-            html += '<div class="timeline">';
-            html += '<h3>⏰ Cronograma de Execução</h3>';
-            html += `<div class="result-item"><span>⚡ Otimista (80%)</span><span><strong>${optimistic} dias úteis</strong></span></div>`;
-            html += `<div class="result-item"><span>📅 Realista (100%)</span><span><strong>${realistic} dias úteis</strong></span></div>`;
-            html += `<div class="result-item"><span>⚠️ Com Atraso (140%)</span><span><strong>${delayed} dias úteis</strong></span></div>`;
-            html += '<h3 style="margin-top: 20px;">👷 Equipe Necessária</h3>';
-            html += `<div class="result-item"><span>Profissionais</span><span><strong>${workers}</strong></span></div>`;
-            html += `<div class="result-item"><span>Total Homem-Hora (HH)</span><span><strong>${Math.ceil(laborHours)}h</strong></span></div>`;
-            html += '<div class="info-box">💡 Baseado em 8h/dia. Para terminar mais rápido, contrate mais profissionais!</div>';
-            html += '</div>';
-            
-            html += '<button class="btn-action btn-save" onclick="saveBudget()">💾 Salvar Orçamento</button>';
-            html += '<button class="btn-action btn-print" onclick="window.print()">🖨️ Imprimir</button>';
-            html += '</div>';
-            
-            document.getElementById('normal-result').innerHTML = html;
-        }
-        
-        function saveBudget() {
-            if (!currentBudget) {
-                alert('Nenhum orçamento para salvar!');
+            if (!area) {
+                alert('Informe a área do ambiente!');
                 return;
             }
-            
-            const name = prompt('Nome do orçamento:', `${currentBudget.type} ${currentBudget.area}m² - ${currentBudget.date}`);
-            if (name) {
-                savedBudgets.push({
-                    ...currentBudget,
-                    name,
-                    id: Date.now()
-                });
-                alert('✅ Orçamento salvo com sucesso!');
-                loadSavedBudgets();
+
+            // Piso (não para casa, que tem lógica própria)
+            if (type !== 'casa') {
+                const pisoPrice = getSelectValue(type.substring(0, 3) + '-piso');
+                const pisoCost = area * pisoPrice * currentState;
+                total += pisoCost;
+                details.push({ name: 'Piso', cost: pisoCost });
+                if (pisoPrice >= 105) ecoItems.push('Piso Ecológico');
             }
+
+            // Lógica específica por tipo
+            if (type === 'cozinha') {
+                // Revestimento
+                const wallsCost = getWallsCost('coz');
+                if (wallsCost > 0) {
+                    total += wallsCost;
+                    details.push({ name: 'Revestimento Paredes', cost: wallsCost });
+                }
+
+                // Pintura
+                if (isChecked('coz-pintura')) {
+                    const pinturaArea = getValue('coz-pintura-area');
+                    const pinturaPrice = getSelectValue('coz-pintura-tipo');
+                    let pinturaCost = pinturaArea * pinturaPrice * currentState;
+                    
+                    // Massa corrida
+                    if (isChecked('coz-pintura-preparo')) {
+                        const preparoCost = pinturaArea * 15 * currentState;
+                        pinturaCost += preparoCost;
+                        details.push({ name: 'Lixamento e Massa Corrida', cost: preparoCost });
+                    }
+                    
+                    total += pinturaCost;
+                    details.push({ name: 'Pintura', cost: pinturaCost });
+                    if (pinturaPrice >= 35) ecoItems.push('Tinta Ecológica');
+                }
+
+                // Bancada
+                if (isChecked('coz-bancada')) {
+                    const bancadaComp = getValue('coz-bancada-comp');
+                    const bancadaPrice = getSelectValue('coz-bancada-tipo');
+                    const bancadaCost = bancadaComp * bancadaPrice * currentState;
+                    total += bancadaCost;
+                    details.push({ name: 'Bancada', cost: bancadaCost });
+                    if (bancadaPrice >= 600) ecoItems.push('Bancada Sustentável');
+                }
+
+                // Pia
+                if (isChecked('coz-pia')) {
+                    const piaCost = getSelectValue('coz-pia-tipo') * currentState;
+                    total += piaCost;
+                    details.push({ name: 'Pia', cost: piaCost });
+                }
+
+                // Elétrica
+                if (isChecked('coz-eletrica')) {
+                    const eletricaCost = area * 80 * currentState;
+                    total += eletricaCost;
+                    details.push({ name: 'Elétrica', cost: eletricaCost });
+                }
+
+                // Hidráulica
+                if (isChecked('coz-hidraulica')) {
+                    const hidraulicaCost = area * 100 * currentState;
+                    total += hidraulicaCost;
+                    details.push({ name: 'Hidráulica', cost: hidraulicaCost });
+                }
+
+                // Sistema de Reúso
+                if (isChecked('coz-reuso')) {
+                    const reusoSelect = document.getElementById('coz-reuso-tipo');
+                    const reusoCost = parseFloat(reusoSelect.value) * currentState;
+                    total += reusoCost;
+                    details.push({ name: 'Sistema Reúso Água', cost: reusoCost });
+                    ecoItems.push('Reaproveitamento de Água');
+                }
+
+                // Demolição
+                if (isChecked('coz-demolir')) {
+                    const demolirArea = getValue('coz-demolir-area');
+                    const demolirCost = demolirArea * 150 * currentState;
+                    total += demolirCost;
+                    details.push({ name: 'Demolição', cost: demolirCost });
+                }
+
+            } else if (type === 'banheiro') {
+                // Revestimento
+                const wallsCost = getWallsCost('ban');
+                if (wallsCost > 0) {
+                    total += wallsCost;
+                    details.push({ name: 'Revestimento Paredes', cost: wallsCost });
+                }
+
+                // Pintura
+                if (isChecked('ban-pintura')) {
+                    const pinturaArea = getValue('ban-pintura-area');
+                    const pinturaPrice = getSelectValue('ban-pintura-tipo');
+                    let pinturaCost = pinturaArea * pinturaPrice * currentState;
+                    
+                    // Massa corrida
+                    if (isChecked('ban-pintura-preparo')) {
+                        const preparoCost = pinturaArea * 15 * currentState;
+                        pinturaCost += preparoCost;
+                        details.push({ name: 'Lixamento e Massa Corrida', cost: preparoCost });
+                    }
+                    
+                    total += pinturaCost;
+                    details.push({ name: 'Pintura Anti-Mofo', cost: pinturaCost });
+                    if (pinturaPrice >= 40) ecoItems.push('Tinta Anti-Mofo Eco');
+                }
+
+                // Louças
+                if (isChecked('ban-loucas')) {
+                    const loucasCost = getSelectValue('ban-loucas-tipo') * currentState;
+                    total += loucasCost;
+                    details.push({ name: 'Kit Louças', cost: loucasCost });
+                    if (loucasCost >= 2200) ecoItems.push('Louças Economizadoras');
+
+                    // Banheira
+                    if (isChecked('ban-banheira')) {
+                        const banheiraSelect = document.getElementById('ban-banheira-tipo');
+                        const banheiraCost = parseFloat(banheiraSelect.value) * currentState;
+                        total += banheiraCost;
+                        details.push({ name: 'Banheira', cost: banheiraCost });
+                    }
+                }
+
+                // Box
+                if (isChecked('ban-boxe')) {
+                    const boxeCost = getSelectValue('ban-boxe-tipo') * currentState;
+                    total += boxeCost;
+                    details.push({ name: 'Box', cost: boxeCost });
+                }
+
+                // Elétrica
+                if (isChecked('ban-eletrica')) {
+                    const eletricaCost = area * 80 * currentState;
+                    total += eletricaCost;
+                    details.push({ name: 'Elétrica', cost: eletricaCost });
+                }
+
+                // Hidráulica
+                if (isChecked('ban-hidraulica')) {
+                    const hidraulicaCost = area * 120 * currentState;
+                    total += hidraulicaCost;
+                    details.push({ name: 'Hidráulica', cost: hidraulicaCost });
+                }
+
+                // Sistema de Reúso
+                if (isChecked('ban-reuso')) {
+                    const reusoSelect = document.getElementById('ban-reuso-tipo');
+                    const reusoCost = parseFloat(reusoSelect.value) * currentState;
+                    total += reusoCost;
+                    details.push({ name: 'Sistema Reúso Água Chuveiro', cost: reusoCost });
+                    ecoItems.push('Reaproveitamento de Água do Chuveiro');
+                }
+
+                // Demolição
+                if (isChecked('ban-demolir')) {
+                    const demolirArea = getValue('ban-demolir-area');
+                    const demolirCost = demolirArea * 150 * currentState;
+                    total += demolirCost;
+                    details.push({ name: 'Demolição', cost: demolirCost });
+                }
+
+            } else if (type === 'quarto' || type === 'sala') {
+                const prefix = type.substring(0, 3);
+                
+                // Pintura - nova lógica
+                const pintarParedes = isChecked(prefix + '-pintar-paredes');
+                const pintarTeto = isChecked(prefix + '-pintar-teto');
+                
+                if (pintarParedes || pintarTeto) {
+                    const pinturaArea = getValue(prefix + '-pintura-area');
+                    const pinturaPrice = getSelectValue(prefix + '-pintura-tipo');
+                    let pinturaCost = pinturaArea * pinturaPrice * currentState;
+                    
+                    // Massa corrida
+                    if (isChecked(prefix + '-pintura-preparo')) {
+                        const preparoCost = pinturaArea * 15 * currentState;
+                        pinturaCost += preparoCost;
+                        details.push({ name: 'Lixamento e Massa Corrida', cost: preparoCost });
+                    }
+                    
+                    total += pinturaCost;
+                    details.push({ name: 'Pintura', cost: pinturaCost });
+                    if (pinturaPrice >= 35) ecoItems.push('Tinta Ecológica');
+                }
+
+                // Elétrica
+                if (isChecked(prefix + '-eletrica')) {
+                    const eletricaCost = area * 70 * currentState;
+                    total += eletricaCost;
+                    details.push({ name: 'Elétrica', cost: eletricaCost });
+                }
+
+                // Demolição
+                if (isChecked(prefix + '-demolir')) {
+                    const demolirArea = getValue(prefix + '-demolir-area');
+                    const demolirCost = demolirArea * 150 * currentState;
+                    total += demolirCost;
+                    details.push({ name: 'Demolição', cost: demolirCost });
+                }
+            } else if (type === 'casa') {
+                // Casa Pequena
+                
+                // Fundação
+                const fundacaoPrice = parseFloat(document.getElementById('casa-fundacao').value);
+                const fundacaoCost = area * fundacaoPrice * currentState;
+                total += fundacaoCost;
+                details.push({ name: 'Fundação', cost: fundacaoCost });
+
+                // Alvenaria
+                const alvenariaPrice = parseFloat(document.getElementById('casa-alvenaria').value);
+                const alvenariaCost = area * alvenariaPrice * currentState;
+                total += alvenariaCost;
+                details.push({ name: 'Alvenaria', cost: alvenariaCost });
+                if (alvenariaPrice >= 420) ecoItems.push('Tijolo Ecológico');
+
+                // Telhado
+                const telhadoPrice = parseFloat(document.getElementById('casa-telhado').value);
+                const telhadoCost = area * telhadoPrice * currentState;
+                total += telhadoCost;
+                details.push({ name: 'Cobertura/Telhado', cost: telhadoCost });
+                if (telhadoPrice >= 280) ecoItems.push('Telha Ecológica');
+
+                // Portas
+                const portasQtd = getValue('casa-portas-qtd');
+                const portasPrice = parseFloat(document.getElementById('casa-portas').value);
+                const portasCost = portasQtd * portasPrice * currentState;
+                total += portasCost;
+                details.push({ name: `Portas (${portasQtd} un)`, cost: portasCost });
+
+                // Janelas
+                const janelasQtd = getValue('casa-janelas-qtd');
+                const janelasPrice = parseFloat(document.getElementById('casa-janelas').value);
+                const janelasCost = janelasQtd * janelasPrice * currentState;
+                total += janelasCost;
+                details.push({ name: `Janelas (${janelasQtd} un)`, cost: janelasCost });
+                if (janelasPrice >= 600) ecoItems.push('Janelas PVC Eco');
+
+                // Piso
+                const casaPisoPrice = parseFloat(document.getElementById('casa-piso').value);
+                const casaPisoCost = area * casaPisoPrice * currentState;
+                total += casaPisoCost;
+                details.push({ name: 'Piso', cost: casaPisoCost });
+                if (casaPisoPrice >= 105) ecoItems.push('Piso Sustentável');
+
+                // Pintura
+                const casaPinturaPrice = parseFloat(document.getElementById('casa-pintura').value);
+                let casaPinturaCost = (area * 3.8) * casaPinturaPrice * currentState;
+                
+                // Massa corrida
+                if (isChecked('casa-pintura-preparo')) {
+                    const preparoCost = (area * 3.8) * 15 * currentState;
+                    casaPinturaCost += preparoCost;
+                    details.push({ name: 'Lixamento e Massa Corrida', cost: preparoCost });
+                }
+                
+                total += casaPinturaCost;
+                details.push({ name: 'Pintura', cost: casaPinturaCost });
+                if (casaPinturaPrice >= 35) ecoItems.push('Tinta Ecológica');
+
+                // Instalações
+                if (isChecked('casa-eletrica')) {
+                    const eletricaCost = area * 90 * currentState;
+                    total += eletricaCost;
+                    details.push({ name: 'Instalação Elétrica', cost: eletricaCost });
+                }
+
+                if (isChecked('casa-hidraulica')) {
+                    const hidraulicaCost = area * 110 * currentState;
+                    total += hidraulicaCost;
+                    details.push({ name: 'Instalação Hidráulica', cost: hidraulicaCost });
+                }
+
+                // Sistema de Reúso
+                if (isChecked('casa-reuso')) {
+                    const reusoSelect = document.getElementById('casa-reuso-tipo');
+                    const reusoCost = parseFloat(reusoSelect.value) * currentState;
+                    total += reusoCost;
+                    details.push({ name: 'Sistema Reúso de Água', cost: reusoCost });
+                    ecoItems.push('Reaproveitamento de Água');
+                }
+
+                // Preparação Solar
+                if (isChecked('casa-solar')) {
+                    const solarCost = 2000 * currentState;
+                    total += solarCost;
+                    details.push({ name: 'Preparação para Energia Solar', cost: solarCost });
+                    ecoItems.push('Preparação Solar');
+                }
+            }
+
+            // Mão de Obra (50%)
+            const maoDeObra = total * 0.50;
+            details.push({ name: 'Mão de Obra (50%)', cost: maoDeObra });
+            total += maoDeObra;
+
+            // Contingências
+            const imprevistos = total * 0.125;
+            const perdaMaterial = total * 0.05;
+            const atrasoMO = total * 0.10;
+
+            const baseTotal = total;
+            const realisticTotal = total + imprevistos + perdaMaterial + atrasoMO;
+
+            // Cronograma
+            let workDays;
+            if (type === 'cozinha' || type === 'banheiro') {
+                workDays = Math.ceil(area * 2);
+            } else if (type === 'casa') {
+                workDays = Math.ceil(area * 4); // Casa completa leva mais tempo
+            } else {
+                workDays = Math.ceil(area * 1.5);
+            }
+
+            const optWorkDays = Math.ceil(workDays * 0.85);
+            const delayWorkDays = Math.ceil(workDays * 1.25);
+
+            // Calcular HH e equipe
+            const totalHH = workDays * 8;
+            let workers = '1 pedreiro + 1 ajudante';
+            if (type === 'casa') {
+                workers = '2 pedreiros + 2 ajudantes + 1 eletricista + 1 encanador';
+            } else {
+                if (isChecked(type.substring(0, 3) + '-eletrica')) workers += ' + 1 eletricista';
+                if (isChecked(type.substring(0, 3) + '-hidraulica')) workers += ' + 1 encanador';
+            }
+
+            // Exibir resultado
+            let html = '<div class="result">';
+            html += `<h2>💰 Orçamento: ${type.charAt(0).toUpperCase() + type.slice(1)}</h2>`;
+
+            // Detalhamento
+            html += '<div class="breakdown"><h3>📋 Detalhamento</h3>';
+            details.forEach(item => {
+                html += `<div class="breakdown-item"><span>${item.name}</span><span>R$ ${formatCurrency(item.cost)}</span></div>`;
+            });
+            html += `<div class="breakdown-item"><span>SUBTOTAL</span><span>R$ ${formatCurrency(baseTotal)}</span></div>`;
+            html += '</div>';
+
+            // Contingências
+            html += '<div class="contingency-box">';
+            html += '<h3>⚠️ Contingências Recomendadas</h3>';
+            html += `<div class="contingency-item"><span>Imprevistos (12,5%)</span><span style="color: #66bb6a; font-weight: bold;">R$ ${formatCurrency(imprevistos)}</span></div>`;
+            html += `<div class="contingency-item"><span>Perda Material (5%)</span><span style="color: #66bb6a; font-weight: bold;">R$ ${formatCurrency(perdaMaterial)}</span></div>`;
+            html += `<div class="contingency-item"><span>Atrasos/Falta MO (10%)</span><span style="color: #66bb6a; font-weight: bold;">R$ ${formatCurrency(atrasoMO)}</span></div>`;
+            html += '</div>';
+
+            // Orçamentos
+            html += '<div class="budget-card budget-realistic">';
+            html += '<h3>💼 Orçamento Realista</h3>';
+            html += `<div class="total-price" style="color: white;">R$ ${formatCurrency(realisticTotal)}</div>`;
+            html += '</div>';
+
+            html += '<div class="budget-card budget-safe">';
+            html += '<h3>📊 Orçamento Seguro</h3>';
+            html += `<div class="total-price" style="color: white;">R$ ${formatCurrency(realisticTotal * 1.15)}</div>`;
+            html += '<small style="color: white;">(Realista + 15% margem de segurança)</small>';
+            html += '</div>';
+
+            // Cronograma
+            html += '<div class="schedule">';
+            html += '<h3>📅 Cronograma de Execução</h3>';
+            html += `<div class="schedule-item"><strong>⚡ Otimista:</strong> ${optWorkDays} dias úteis<br><small>Tudo sai perfeito</small></div>`;
+            html += `<div class="schedule-item"><strong>✅ Realista:</strong> ${workDays} dias úteis<br><small>Cronograma normal</small></div>`;
+            html += `<div class="schedule-item"><strong>⏰ Com Atrasos:</strong> ${delayWorkDays} dias úteis<br><small>Imprevistos e chuvas</small></div>`;
+            html += `<div class="info-box"><strong>Equipe Necessária:</strong> ${workers}<br>`;
+            html += `<strong>Total HH:</strong> ${totalHH} homens-hora<br>`;
+            html += `💡 Considere aumentar o efetivo ou os turnos caso queira acelerar a obra.</div>`;
+            html += '</div>';
+
+            // Impacto Sustentável
+            if (ecoItems.length > 0) {
+                html += '<div class="eco-impact">';
+                html += '<h3>🌱 Impacto Sustentável</h3>';
+                html += '<p>Parabéns! Você escolheu materiais/sistemas ecológicos:</p><ul>';
+                ecoItems.forEach(item => {
+                    html += `<li>✅ ${item}</li>`;
+                });
+                html += '</ul>';
+                html += '<p><strong>Benefícios:</strong> Economia de água/energia, menor impacto ambiental, valorização do imóvel!</p>';
+                html += '</div>';
+            }
+
+            // Botão Salvar
+            html += '<div style="margin-top: 20px;">';
+            html += '<input type="text" id="budget-name" placeholder="Nome do orçamento (ex: Reforma Cozinha)" style="width: 100%; padding: 15px; border-radius: 10px; border: 2px solid #e0e0e0; margin-bottom: 10px;">';
+            html += '<button class="btn btn-primary" onclick="saveBudget(\'' + type + '\', ' + area + ', ' + baseTotal + ', ' + realisticTotal + ', ' + workDays + ', \'' + workers + '\')" style="width: 100%;">💾 Salvar Orçamento</button>';
+            html += '</div>';
+
+            html += '</div>';
+
+            document.getElementById('result-container').innerHTML = html;
         }
-        
+
+        function saveBudget(type, area, baseTotal, realisticTotal, workDays, workers) {
+            const name = document.getElementById('budget-name').value;
+            if (!name) {
+                alert('Digite um nome para o orçamento!');
+                return;
+            }
+
+            savedBudgets.push({
+                name,
+                type,
+                area,
+                baseTotal,
+                realisticTotal,
+                workDays,
+                workers,
+                id: Date.now()
+            });
+            saveToStorage(); // Salvar no localStorage
+            alert('✅ Orçamento salvo com sucesso!');
+            loadSavedBudgets();
+        }
+
         function loadSavedBudgets() {
             const container = document.getElementById('saved-budgets-list');
             if (savedBudgets.length === 0) {
                 container.innerHTML = '';
                 return;
             }
-            
+
             let html = '<h3 style="text-align: left; margin-top: 30px;">📂 Orçamentos Salvos</h3>';
             savedBudgets.slice(-5).reverse().forEach(budget => {
                 html += `
@@ -1525,15 +2395,15 @@
             });
             container.innerHTML = html;
         }
-        
+
         function loadBudgetSelectList() {
             const container = document.getElementById('budget-select-list');
             if (savedBudgets.length === 0) {
-                container.innerHTML = '<div class="info-box">Nenhum orçamento salvo ainda. Crie um orçamento primeiro!</div>';
+                container.innerHTML = '<div class="info-box">Nenhum orçamento salvo ainda. Crie um orçamento primeiro na seção "Fazer Orçamento"!</div>';
                 return;
             }
-            
-            let html = '';
+
+            let html = '<h3>📂 Selecione um Orçamento Salvo</h3>';
             savedBudgets.forEach((budget, idx) => {
                 html += `
                     <div class="saved-budget-card" onclick="selectBudgetForTracking(${idx})">
@@ -1542,26 +2412,29 @@
                     </div>
                 `;
             });
+            html += '<hr style="margin: 30px 0;"><p><strong>Ou configure manualmente abaixo:</strong></p>';
             container.innerHTML = html;
         }
-        
+
         function selectBudgetForTracking(idx) {
             const budget = savedBudgets[idx];
             document.getElementById('project-name').value = budget.name;
+            document.getElementById('track-type').value = budget.type;
+            document.getElementById('track-area').value = budget.area;
             document.getElementById('total-days').value = budget.workDays;
-            
+
             document.querySelectorAll('.saved-budget-card').forEach((el, i) => {
                 el.classList.toggle('selected', i === idx);
             });
         }
-        
+
         function calculateReverse() {
             const budget = parseFloat(document.getElementById('budget-amount').value);
             if (!budget || budget < 1000) {
                 alert('Informe um valor válido (mínimo R$ 1.000)');
                 return;
             }
-            
+
             const rooms = {};
             ['cozinha', 'banheiro', 'quarto', 'sala'].forEach(room => {
                 if (document.getElementById('rev-' + room).checked) {
@@ -1569,30 +2442,30 @@
                     if (area > 0) rooms[room] = area;
                 }
             });
-            
+
             if (Object.keys(rooms).length === 0) {
-                alert('Selecione pelo menos um cômodo!');
+                alert('Selecione pelo menos um cômodo e informe as áreas!');
                 return;
             }
-            
+
             const costs = {};
             for (let room in rooms) {
                 costs[room] = estimateRoomCost(room, rooms[room]);
             }
-            
+
             const sorted = Object.entries(costs).sort((a, b) => a[1] - b[1]);
-            
+
             let html = '<div class="result">';
             html += '<h2>🎯 Sua Melhor Estratégia</h2>';
-            
+
             sorted.forEach(([room, cost]) => {
                 const canAfford = cost <= budget;
                 const roomName = {cozinha: '🍳 Cozinha', banheiro: '🚿 Banheiro', quarto: '🛏️ Quarto', sala: '🛋️ Sala'}[room];
-                
+
                 html += '<div class="reverse-card">';
                 html += `<h3>${roomName} (${rooms[room]}m²)</h3>`;
                 html += `<div class="included">✅ Incluído: Piso + ${room === 'cozinha' || room === 'banheiro' ? 'Revestimento' : 'Pintura'}</div>`;
-                
+
                 if (room === 'cozinha') {
                     html += `<div class="included">✅ Pia atual: Mantida</div>`;
                     html += `<div class="optional">💡 Para trocar pia: +R$ 800 = R$ ${formatCurrency(cost + 800)}</div>`;
@@ -1600,11 +2473,11 @@
                     html += `<div class="included">✅ Louças atuais: Mantidas</div>`;
                     html += `<div class="optional">💡 Para trocar louças: +R$ 1.200 = R$ ${formatCurrency(cost + 1200)}</div>`;
                 }
-                
+
                 html += `<div style="font-size: 1.5em; color: ${canAfford ? '#66bb6a' : '#ef5350'}; font-weight: bold; margin-top: 10px;">R$ ${formatCurrency(cost)} ${canAfford ? '✅' : '❌'}</div>`;
                 html += '</div>';
             });
-            
+
             let accumulated = 0;
             let sequence = [];
             for (let [room, cost] of sorted) {
@@ -1613,7 +2486,7 @@
                     sequence.push({room, cost});
                 }
             }
-            
+
             if (sequence.length > 0) {
                 html += '<div style="background: #e8f5e9; padding: 20px; border-radius: 10px; border: 2px solid #66bb6a;">';
                 html += `<h3>✅ Com R$ ${formatCurrency(budget)}, você consegue:</h3>`;
@@ -1622,7 +2495,34 @@
                     html += `<div style="margin: 10px 0;">${idx + 1}º ${roomName} (${rooms[item.room]}m²) - R$ ${formatCurrency(item.cost)}</div>`;
                 });
                 html += `<div style="font-size: 1.3em; font-weight: bold; margin-top: 15px;">Total: R$ ${formatCurrency(accumulated)}</div>`;
-                html += `<div style="color: #66bb6a; font-weight: bold;">Sobra: R$ ${formatCurrency(budget - accumulated)}</div>`;
+                
+                const leftover = budget - accumulated;
+                html += `<div style="color: #66bb6a; font-weight: bold; font-size: 1.2em; margin-top: 10px;">Sobra: R$ ${formatCurrency(leftover)}</div>`;
+                
+                // NOVO: Sugestões do que fazer com o dinheiro que sobrou
+                if (leftover >= 500) {
+                    html += '<div style="background: #fff9c4; padding: 15px; border-radius: 10px; margin-top: 15px; border: 2px solid #ffc107;">';
+                    html += '<h4 style="color: #f57c00; margin-bottom: 10px;">💡 Sugestões para usar os R$ ' + formatCurrency(leftover) + ' restantes:</h4>';
+                    
+                    const suggestions = [];
+                    if (leftover >= 2000) suggestions.push('Trocar todas as portas (R$ 400-600/unidade)');
+                    if (leftover >= 1500) suggestions.push('Instalar ar condicionado (R$ 1.500-3.000)');
+                    if (leftover >= 1200) suggestions.push('Armários planejados para quarto (R$ 1.200-5.000/m²)');
+                    if (leftover >= 1000) suggestions.push('Iluminação decorativa LED (R$ 800-1.500)');
+                    if (leftover >= 800) suggestions.push('Trocar metais do banheiro (torneiras, chuveiro - R$ 600-1.200)');
+                    if (leftover >= 600) suggestions.push('Decoração (cortinas, quadros, plantas - R$ 500-1.000)');
+                    if (leftover >= 500) suggestions.push('Prateleiras e organizadores (R$ 400-800)');
+                    
+                    if (suggestions.length > 0) {
+                        html += '<ul style="margin-top: 10px;">';
+                        suggestions.forEach(s => {
+                            html += `<li style="margin: 5px 0; color: #555;">🎨 ${s}</li>`;
+                        });
+                        html += '</ul>';
+                    }
+                    html += '</div>';
+                }
+                
                 html += '</div>';
             } else {
                 html += '<div style="background: #ffebee; padding: 20px; border-radius: 10px; border: 2px solid #ef5350;">';
@@ -1630,87 +2530,186 @@
                 html += '<p>Considere: reduzir área, escolher materiais mais econômicos ou aumentar o orçamento.</p>';
                 html += '</div>';
             }
-            
+
             html += '</div>';
             document.getElementById('reverse-result').innerHTML = html;
         }
-        
+
         function estimateRoomCost(room, area) {
             let cost = 0;
             if (room === 'cozinha' || room === 'banheiro') {
-                cost += area * 95 * currentState;
-                cost += (area * 2) * 75 * currentState;
-                if (room === 'banheiro') cost += 0;
+                cost += area * 95 * currentState; // Piso
+                cost += (area * 2) * 75 * currentState; // Revestimento estimado
             } else {
-                cost += area * 85 * currentState;
-                cost += (area * 3.8) * 25 * currentState;
+                cost += area * 85 * currentState; // Piso
+                cost += (area * 3.8) * 25 * currentState; // Pintura
             }
-            cost += cost * 0.50;
-            cost += cost * 0.175;
+            cost += cost * 0.50; // Mão de obra
+            cost += cost * 0.175; // Contingências
             return cost;
         }
-        
+
         function initTracking() {
             const projectName = document.getElementById('project-name').value;
-            const totalDays = parseInt(document.getElementById('total-days').value);
-            
-            if (!projectName || !totalDays) {
-                alert('Preencha nome e prazo!');
+            const type = document.getElementById('track-type').value;
+            const area = parseFloat(document.getElementById('track-area').value);
+            let totalDays = parseInt(document.getElementById('total-days').value);
+
+            if (!projectName || !type || !area) {
+                alert('Preencha todos os campos obrigatórios!');
                 return;
             }
-            
-            trackingSteps = [
-                {name: 'Demolição', days: Math.ceil(totalDays * 0.10), completed: false},
-                {name: 'Instalação Piso', days: Math.ceil(totalDays * 0.25), completed: false},
-                {name: 'Revestimento Paredes', days: Math.ceil(totalDays * 0.25), completed: false},
-                {name: 'Instalações (Elétrica/Hidráulica)', days: Math.ceil(totalDays * 0.20), completed: false},
-                {name: 'Pintura', days: Math.ceil(totalDays * 0.15), completed: false},
-                {name: 'Acabamentos Finais', days: Math.ceil(totalDays * 0.05), completed: false}
-            ];
-            
+
+            // Calcular dias baseado nos serviços
+            const services = [];
+            if (isChecked('track-piso')) services.push({name: 'Instalação Piso', days: Math.ceil(area * 0.5), progress: 0, notes: '', delayed: false});
+            if (isChecked('track-revestimento')) services.push({name: 'Revestimento Paredes', days: Math.ceil(area * 0.4), progress: 0, notes: '', delayed: false});
+            if (isChecked('track-pintura')) services.push({name: 'Pintura', days: Math.ceil(area * 0.3), progress: 0, notes: '', delayed: false});
+            if (isChecked('track-eletrica')) services.push({name: 'Instalação Elétrica', days: Math.ceil(area * 0.4), progress: 0, notes: '', delayed: false});
+            if (isChecked('track-hidraulica')) services.push({name: 'Instalação Hidráulica', days: Math.ceil(area * 0.5), progress: 0, notes: '', delayed: false});
+            if (isChecked('track-demolir')) services.push({name: 'Demolição', days: Math.ceil(area * 0.3), progress: 0, notes: '', delayed: false});
+
+            if (services.length === 0) {
+                alert('Marque pelo menos um serviço a realizar!');
+                return;
+            }
+
+            // Calcular equipe
+            const pedreiros = parseInt(document.getElementById('track-pedreiros').value) || 0;
+            const ajudantes = parseInt(document.getElementById('track-ajudantes').value) || 0;
+            const pintores = parseInt(document.getElementById('track-pintores').value) || 0;
+            const eletricistas = parseInt(document.getElementById('track-eletricistas').value) || 0;
+            const encanadores = parseInt(document.getElementById('track-encanadores').value) || 0;
+
+            const totalWorkers = pedreiros + ajudantes + pintores + eletricistas + encanadores;
+
+            if (totalWorkers === 0) {
+                alert('Informe pelo menos um trabalhador contratado!');
+                return;
+            }
+
+            // Ajustar dias baseado na equipe
+            const baseDays = services.reduce((sum, s) => sum + s.days, 0);
+            totalDays = totalDays || Math.ceil(baseDays / Math.max(1, totalWorkers * 0.7));
+
+            trackingSteps = services;
+            trackingSteps.push({name: 'Acabamentos Finais', days: Math.ceil(totalDays * 0.1), progress: 0, notes: '', delayed: false});
+
             document.getElementById('tracking-content').classList.remove('hidden');
+            document.getElementById('total-days-display').textContent = totalDays;
             updateTracking();
         }
-        
+
         function updateTracking() {
             const container = document.getElementById('tracking-items');
             container.innerHTML = '';
-            
+
             let completed = 0;
             let daysWorked = 0;
-            
+            let totalProgress = 0;
+
             trackingSteps.forEach((step, idx) => {
                 const div = document.createElement('div');
-                div.className = 'tracking-item' + (step.completed ? ' completed' : '');
+                const isDelayed = step.delayed || false;
+                const progress = step.progress || 0;
+                
+                div.className = 'tracking-item';
+                if (progress === 100) {
+                    div.className += ' completed';
+                } else if (isDelayed) {
+                    div.className += ' delayed';
+                }
+                
                 div.innerHTML = `
-                    <div style="display: flex; justify-content: space-between; align-items: center;">
-                        <div>
-                            <input type="checkbox" ${step.completed ? 'checked' : ''} 
-                                   onchange="toggleStep(${idx})">
-                            <strong>${step.name}</strong> (${step.days} dias)
+                    <div class="tracking-header">
+                        <div style="display: flex; align-items: center; gap: 10px;">
+                            <input type="checkbox" ${progress === 100 ? 'checked' : ''} 
+                                   onchange="toggleStepComplete(${idx})"
+                                   style="width: 20px; height: 20px; cursor: pointer;">
+                            <strong style="font-size: 1.1em;">${step.name}</strong>
+                            <span style="color: #666;">(${step.days} dias)</span>
                         </div>
-                        <span>${step.completed ? '✅ Concluído' : '⏳ Pendente'}</span>
+                        <span style="font-weight: bold; color: ${progress === 100 ? '#66bb6a' : (isDelayed ? '#ff9800' : '#999')};">
+                            ${progress === 100 ? '✅ Concluído' : (isDelayed ? '⚠️ Atrasado' : '⏳ Pendente')}
+                        </span>
+                    </div>
+                    
+                    <div class="tracking-progress">
+                        <span style="color: #999; min-width: 80px;">Progresso:</span>
+                        <input type="range" min="0" max="100" value="${progress}" 
+                               onchange="updateStepProgress(${idx}, this.value)">
+                        <span id="progress-${idx}">${progress}%</span>
+                    </div>
+                    
+                    <div class="delay-checkbox">
+                        <input type="checkbox" id="delay-${idx}" ${isDelayed ? 'checked' : ''}
+                               onchange="toggleStepDelay(${idx})"
+                               style="width: 18px; height: 18px;">
+                        <label for="delay-${idx}" style="margin: 0; cursor: pointer;">
+                            ⚠️ Esta etapa está atrasada
+                        </label>
+                    </div>
+                    
+                    <div class="tracking-notes">
+                        <label style="font-size: 0.9em; color: #666; font-weight: normal;">
+                            📝 Observações (como está a obra nesta etapa):
+                        </label>
+                        <textarea 
+                            id="notes-${idx}"
+                            placeholder="Ex: Aguardando entrega de material, chuvas atrasaram, tudo conforme planejado..."
+                            onchange="updateStepNotes(${idx}, this.value)"
+                        >${step.notes || ''}</textarea>
                     </div>
                 `;
                 container.appendChild(div);
-                
-                if (step.completed) {
+
+                totalProgress += progress;
+                if (progress === 100) {
                     completed++;
                     daysWorked += step.days;
                 }
             });
-            
-            const progress = Math.round((completed / trackingSteps.length) * 100);
-            document.getElementById('progress-fill').style.width = progress + '%';
-            document.getElementById('progress-fill').textContent = progress + '%';
+
+            const overallProgress = Math.round(totalProgress / trackingSteps.length);
+            document.getElementById('progress-fill').style.width = overallProgress + '%';
+            document.getElementById('progress-fill').textContent = overallProgress + '%';
             document.getElementById('days-worked').textContent = daysWorked;
         }
-        
+
+        function toggleStepComplete(idx) {
+            trackingSteps[idx].progress = trackingSteps[idx].progress === 100 ? 0 : 100;
+            updateTracking();
+        }
+
+        function updateStepProgress(idx, value) {
+            trackingSteps[idx].progress = parseInt(value);
+            document.getElementById('progress-' + idx).textContent = value + '%';
+            
+            // Atualiza progresso geral
+            let totalProgress = 0;
+            trackingSteps.forEach(step => {
+                totalProgress += (step.progress || 0);
+            });
+            const overallProgress = Math.round(totalProgress / trackingSteps.length);
+            document.getElementById('progress-fill').style.width = overallProgress + '%';
+            document.getElementById('progress-fill').textContent = overallProgress + '%';
+        }
+
+        function toggleStepDelay(idx) {
+            const checkbox = document.getElementById('delay-' + idx);
+            trackingSteps[idx].delayed = checkbox.checked;
+            updateTracking();
+        }
+
+        function updateStepNotes(idx, notes) {
+            trackingSteps[idx].notes = notes;
+        }
+
         function toggleStep(idx) {
             trackingSteps[idx].completed = !trackingSteps[idx].completed;
             updateTracking();
         }
-        
+
         showScreen('home');
     </script>
 </body>
